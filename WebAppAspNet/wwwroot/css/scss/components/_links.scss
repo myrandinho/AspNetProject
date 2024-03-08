@@ -1,0 +1,24 @@
+a {
+    @include standard-text;
+    color: $theme;
+    text-decoration: none;
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.menu-link {
+    @include text-nav;
+    text-decoration: none;
+    transition: color 0.25s ease-in-out;
+
+    &:hover,
+    &:active,
+    &:focus,
+    .active {
+        color: $theme;
+        text-decoration: none;
+    }
+}

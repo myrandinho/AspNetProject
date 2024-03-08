@@ -1,0 +1,129 @@
+.features {
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
+    background-color: #F3F6FF;
+
+    .container {
+        text-align: center;
+
+        h2 {
+            @include h2;
+
+            @include lg {
+                @include h1;
+            }
+        }
+
+        .p-width {
+            padding-left: 5rem;
+            padding-right: 5rem;
+            color: #9397AD;
+            @include text-lg;
+
+            @include xl {
+                padding-left: 22.5rem;
+                padding-right: 22.5rem;
+                margin-bottom: 3.125rem;
+            }
+        }
+
+        .feature-boxes {
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto auto;
+
+            @include lg {
+                grid-template-columns: auto auto auto;
+                grid-template-rows: auto auto;
+            }
+
+            .link-box {
+                color: black;
+
+
+                &:hover {
+                    text-decoration: none;
+                }
+
+                .f-box {
+                    max-width: 100%;
+                    height: 9rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding-right: 1rem;
+                    padding-left: 1rem;
+
+                    &:hover {
+                        background-color: #ffffff;
+                    }
+
+                    @include md {
+                        height: 12rem;
+                    }
+
+
+                    @include lg {
+                        height: 16.875rem;
+                    }
+
+                    h5 {
+                        @include h6;
+
+                        @include md {
+                            @include h5;
+                        }
+                    }
+
+
+                    p {
+                        display: none;
+                        color: #565973;
+                        @include text-m;
+
+                        @include md {
+                            display: block;
+                        }
+
+                        @include lg {
+                            @include text-lg;
+                        }
+                    }
+                }
+            }
+
+            .f-box-1 {
+                border-bottom: 0.5px solid #E2E5F1;
+                border-right: 0.5px solid #E2E5F1;
+            }
+
+            .f-box-2 {
+                border-bottom: 0.5px solid #E2E5F1;
+                border-right: 0.5px solid #E2E5F1;
+                border-left: 0.5px solid #E2E5F1;
+            }
+
+            .f-box-3 {
+                border-bottom: 0.5px solid #E2E5F1;
+                border-left: 0.5px solid #E2E5F1;
+            }
+
+            .f-box-4 {
+                border-top: 0.5px solid #E2E5F1;
+                border-right: 0.5px solid #E2E5F1;
+            }
+
+            .f-box-5 {
+                border-top: 0.5px solid #E2E5F1;
+                border-right: 0.5px solid #E2E5F1;
+                border-left: 0.5px solid #E2E5F1;
+            }
+
+            .f-box-6 {
+                border-top: 0.5px solid #E2E5F1;
+                border-left: 0.5px solid #E2E5F1;
+            }
+        }
+    }
+}

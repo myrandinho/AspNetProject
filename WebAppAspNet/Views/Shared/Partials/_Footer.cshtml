@@ -1,0 +1,11 @@
+﻿<footer>
+    <div class="container">
+        <div class="@((ViewContext.RouteData.Values["Controller"]!.ToString() == "Auth") ? "d-none" : "social-media")">
+            <a class="btn-social" href="#"><i class="fa-brands fa-square-facebook"></i></a>
+            <a class="btn-social" href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a class="btn-social" href="#"><i class="fa-brands fa-square-instagram"></i></a>
+            <a class="btn-social" href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <p>© @DateTime.Now.Year Silicon. All rights reserved. Pulvinar urna condimentum amet tempor, ornare integer. Lorem odio justo malesuada suspendisse viverra aliquet quisque turpis non. Feugiat in odio non nunc ornare consectetur.</p>
+    </div>
+</footer>

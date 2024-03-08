@@ -1,0 +1,72 @@
+#signin {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+        width: 100%;
+
+        @include lg {
+            width: 30%;
+        }
+
+
+        form {
+
+
+            .my-error-message {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 15px;
+                border-radius: 8px;
+                background-color: #F5D7DA;
+            }
+
+            h1 {
+                font-weight: 800;
+            }
+
+            p {
+                color: #565973;
+                margin: 0;
+
+                a {
+                    color: #6366F1;
+                }
+            }
+
+            .content {
+
+
+                #form-email {
+                }
+
+                #form-password {
+                }
+
+                #form-remember {
+                }
+
+                .btn-and-forgot-area {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: center;
+
+                    #form-submit {
+                        width: 100%;
+                    }
+
+                    #form-forgot-password {
+                        display: inline-block;
+                        color: #6366F1;
+                        font-weight: 600;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}

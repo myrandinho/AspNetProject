@@ -1,0 +1,42 @@
+.showcase {
+    
+    padding-bottom: 250px;
+
+    .content {
+        margin-top: 100px;
+
+        h1 {
+            width: 405px;
+            
+        }
+
+        p {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            width: 450px;
+    
+        }
+
+        .btn-theme-s {
+            width: 210px;
+            height: 52px;
+            margin-bottom: 80px;
+        }
+        .brands {
+
+            margin-top: 35px;
+            img {
+                margin-right: 15px;
+            }
+        }
+    }
+
+    .background-image {
+
+        width: 1007px;
+        height: 976px;
+        position: absolute;
+        right: 0px;
+        top: 55px;
+    }
+}

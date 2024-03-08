@@ -1,0 +1,48 @@
+﻿@model SignInViewModel
+@{
+    ViewData["Title"] = "test title";
+}
+
+
+<section id="signin">
+    <div class="container">
+        <form method="post" asp-controller="Account" asp-action="SignIn" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" novalidate>
+            @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+            {
+                <div class="my-error-message">
+                    @ViewData["ErrorMessage"]
+                </div>
+            }
+            
+
+            <h1>Welcome Back</h1>
+            <p>Don't' have an account yet? <a asp-controller="Account" asp-action="SignUp">Sign up here</a>.</p>
+
+            <div class="content">
+
+                <div id="form-email" class="input-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" />
+                </div>
+                <div id="form-password" class="input-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" />
+                </div>
+
+                <div id="form-remember" class="checkbox">
+                    <div class="checkbox-group">
+                        <input asp-for="RememberMe" />
+                        <label asp-for="RememberMe">Keep me signed in.</label>
+                    </div>
+                </div>
+                <div class="btn-and-forgot-area">
+                    <button id="form-submit" class="btn-theme-s mb-3" type="submit">Sign in</button>
+                    <a id="form-forgot-password" asp-controller="Account" asp-action="Forgot">Forgot your password?</a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</section>
+
+@await Html.PartialAsync("_ValidationScriptsPartial");
