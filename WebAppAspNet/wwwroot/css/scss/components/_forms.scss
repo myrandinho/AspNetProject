@@ -126,12 +126,21 @@ form {
     width: 100%;
     display: grid;
 
+    textarea {
+        padding: 0.5rem;
+        border-radius: 8px !important;
+        border: 1px solid $gray-400;
+    }
+
 
 
 
     h1 {
+        
         font-weight: 700;
         color: #0B0F19;
+
+
     }
 
     p {
@@ -145,7 +154,7 @@ form {
 
     .input-group {
         display: grid;
-        margin: 1rem 0;
+        margin: 0.8rem 0;
 
         span {
 

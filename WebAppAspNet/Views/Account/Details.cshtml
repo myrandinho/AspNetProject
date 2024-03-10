@@ -18,7 +18,7 @@
              <div class="profile">
                  <div class="profile-image">
                      <img src="~/Images/@Model.ProfileInfo.ProfileImageUrl" alt="" />
-                    <a class="btn-white-circle" href="#"><i class="fa-regular fa-refresh"></i></a>
+                     <a class="btn-white-circle" href="#"><i class="fa-regular fa-refresh"></i></a>
                  </div>
                  <div class="profile-info">
                     <h3>@Model.ProfileInfo.FirstName @Model.ProfileInfo.LastName</h3>
@@ -26,10 +26,10 @@
                  </div>
              </div>
              <nav>
-                <a class="btn-nav active" asp-action="Details" asp-controller="Account">D</a>
-                <a class="btn-nav" asp-action="Details" asp-controller="Account"></a>
-                <a class="btn-nav" asp-action="Details" asp-controller="Account"></a>
-                <a class="btn-nav" asp-action="Details" asp-controller="Account"></a>
+                <a id="nav-settings" class="btn-theme btn-nav active" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i></a>
+                <a id="nav-security" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-lock"></i></a>
+                <a id="nav-bookmark" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-bookmark"></i></a>
+                <a id="nav-signout" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i></a>
              </nav>
          </aside>
          <div class="account-information">
@@ -62,9 +62,11 @@
                         <textarea asp-for="BasicInfoForm.Biography" ></textarea>
                         <span asp-validation-for="BasicInfoForm.Biography"></span>
                     </div>
-
-                    <button id="btn-info-reset" class="btn-theme-secondary" type="reset">Cancel</button>
-                    <button id="btn-info-submit" class="btn-theme" type="submit">Save changes</button>
+                    <div class="my-buttons">
+                        <button id="btn-info-reset" class="btn-gray" type="reset">Cancel</button>
+                        <button id="btn-info-submit" class="btn-theme" type="submit">Save changes</button>
+                    </div>
+                    
                  </div>
              </form>
 
@@ -92,8 +94,10 @@
                         <span asp-validation-for="AdressInfoForm.City"></span>
                     </div>
 
-                    <button id="btn-adress-reset" class="btn-theme-secondary" type="reset">Cancel</button>
-                    <button id="btn-adress-submit" class="btn-theme" type="submit">Save changes</button>
+                    <div class="my-buttons">
+                        <button id="btn-adress-reset" class="btn-gray" type="reset">Cancel</button>
+                        <button id="btn-adress-submit" class="btn-theme" type="submit">Save changes</button>
+                    </div>
                  </div>
              </form>
 

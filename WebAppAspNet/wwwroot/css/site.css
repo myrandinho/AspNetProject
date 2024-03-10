@@ -482,6 +482,11 @@ form {
   width: 100%;
   display: grid;
 }
+form textarea {
+  padding: 0.5rem;
+  border-radius: 8px !important;
+  border: 1px solid #D4D7E5;
+}
 form h1 {
   font-weight: 700;
   color: #0B0F19;
@@ -495,7 +500,7 @@ form p a {
 }
 form .input-group {
   display: grid;
-  margin: 1rem 0;
+  margin: 0.8rem 0;
 }
 form .input-group span.field-validation-error {
   position: absolute;
@@ -630,7 +635,7 @@ footer {
 footer .container {
   text-align: center;
   /*         padding-right: 160px;
-          padding-left: 160px; */
+  padding-left: 160px; */
 }
 footer .container .social-media {
   display: flex;
@@ -638,6 +643,14 @@ footer .container .social-media {
   align-items: center;
   gap: 20px;
   margin-bottom: 30px;
+}
+footer .container span {
+  display: none;
+}
+@media (min-width: 768px) {
+  footer .container span {
+    display: block;
+  }
 }
 
 .showcase {
@@ -1025,4 +1038,235 @@ footer .container .social-media {
   color: #6366F1;
   font-weight: 600;
   text-decoration: none;
+}
+
+@media (min-width: 992px) {
+  .account-details .container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: "my-aside a-details";
+  }
+}
+.account-details .container aside {
+  grid-area: my-aside;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 992px) {
+  .account-details .container aside {
+    width: 20rem;
+    padding-right: 2rem;
+    border-right: 1px solid #D4D7E5;
+  }
+}
+.account-details .container aside .profile {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
+.account-details .container aside .profile .profile-image {
+  position: relative;
+  z-index: 1;
+}
+.account-details .container aside .profile .profile-image .btn-white-circle {
+  height: 36px;
+  width: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid #E2E5F1;
+  text-decoration: none;
+  color: #33354D;
+  position: absolute;
+  right: 45px;
+  bottom: 10px;
+  background-color: #fff;
+  z-index: 2;
+}
+.account-details .container aside .profile .profile-info h3 {
+  font-weight: 800;
+  color: #0B0F19;
+}
+.account-details .container aside .profile .profile-info p {
+  color: #565973;
+}
+.account-details .container aside nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 2rem;
+}
+@media (min-width: 992px) {
+  .account-details .container aside nav {
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+.account-details .container aside nav .btn-nav {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  box-shadow: 0px 4px 9px -1px rgba(19, 16, 34, 0.03), 0px 4.4px 20px -1px rgba(19, 16, 34, 0.05);
+}
+@media (min-width: 992px) {
+  .account-details .container aside nav .btn-nav {
+    width: 20rem;
+  }
+}
+@media (min-width: 992px) {
+  .account-details .container aside nav #nav-security {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  .account-details .container aside nav #nav-bookmark {
+    display: none;
+  }
+}
+.account-details .container .account-information {
+  grid-area: a-details;
+}
+.account-details .container .account-information .basicinfo-form {
+  border-bottom: 1px solid #D4D7E5;
+}
+.account-details .container .account-information .basicinfo-form h1 {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  font-size: 32px !important;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .account-details .container .account-information .basicinfo-form h1 {
+    line-height: 160%;
+    font-weight: 400;
+    color: #565973;
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: #0B0F19;
+    font-size: 40px !important;
+  }
+}
+@media (min-width: 992px) {
+  .account-details .container .account-information .basicinfo-form h1 {
+    text-align: start;
+  }
+}
+.account-details .container .account-information .basicinfo-form h5 {
+  text-align: center;
+  color: #6366F1;
+}
+@media (min-width: 992px) {
+  .account-details .container .account-information .basicinfo-form h5 {
+    text-align: start;
+  }
+}
+.account-details .container .account-information .basicinfo-form .form-content {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 2.5%;
+  grid-template-areas: "fname fname" "lname lname" "email email" "phone phone" "bio bio" "buttons buttons";
+}
+@media (min-width: 768px) {
+  .account-details .container .account-information .basicinfo-form .form-content {
+    grid-template-areas: "fname lname" "email phone" "bio bio" "buttons buttons";
+  }
+}
+.account-details .container .account-information .basicinfo-form .form-content #form-firstname {
+  grid-area: fname;
+}
+.account-details .container .account-information .basicinfo-form .form-content #form-lastname {
+  grid-area: lname;
+}
+.account-details .container .account-information .basicinfo-form .form-content #form-email {
+  grid-area: email;
+}
+.account-details .container .account-information .basicinfo-form .form-content #form-phone {
+  grid-area: phone;
+}
+.account-details .container .account-information .basicinfo-form .form-content #form-bio {
+  grid-area: bio;
+}
+.account-details .container .account-information .basicinfo-form .form-content .my-buttons {
+  grid-area: buttons;
+  display: flex;
+  gap: 2%;
+}
+.account-details .container .account-information .basicinfo-form .form-content .my-buttons #btn-info-reset {
+  grid-area: btn-reset;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .account-details .container .account-information .basicinfo-form .form-content .my-buttons #btn-info-reset {
+    width: 6rem;
+  }
+}
+.account-details .container .account-information .basicinfo-form .form-content .my-buttons #btn-info-submit {
+  grid-area: btn-submit;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .account-details .container .account-information .basicinfo-form .form-content .my-buttons #btn-info-submit {
+    width: 9rem;
+  }
+}
+.account-details .container .account-information #adressinfo-form {
+  padding-top: 3rem;
+}
+.account-details .container .account-information #adressinfo-form h5 {
+  text-align: center;
+  color: #6366F1;
+}
+@media (min-width: 992px) {
+  .account-details .container .account-information #adressinfo-form h5 {
+    text-align: start;
+  }
+}
+.account-details .container .account-information #adressinfo-form .form-adress-content {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 2.5%;
+  grid-template-areas: "al1 al1" "al2 al2" "postal postal" "city city" "buttons buttons";
+}
+.account-details .container .account-information #adressinfo-form .form-adress-content #adressline_1 {
+  grid-area: al1;
+}
+.account-details .container .account-information #adressinfo-form .form-adress-content #adressline_2 {
+  grid-area: al2;
+}
+.account-details .container .account-information #adressinfo-form .form-adress-content #postalcode {
+  grid-area: postal;
+}
+.account-details .container .account-information #adressinfo-form .form-adress-content #city {
+  grid-area: city;
+}
+.account-details .container .account-information #adressinfo-form .form-adress-content .my-buttons {
+  grid-area: buttons;
+  display: flex;
+  gap: 2%;
+}
+.account-details .container .account-information #adressinfo-form .form-adress-content .my-buttons #btn-adress-reset {
+  grid-area: btn-adress-reset;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .account-details .container .account-information #adressinfo-form .form-adress-content .my-buttons #btn-adress-reset {
+    width: 6rem;
+  }
+}
+.account-details .container .account-information #adressinfo-form .form-adress-content .my-buttons #btn-adress-submit {
+  grid-area: btn-adress-submit;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .account-details .container .account-information #adressinfo-form .form-adress-content .my-buttons #btn-adress-submit {
+    width: 9rem;
+  }
 }
