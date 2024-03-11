@@ -108,8 +108,13 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
 
 
-
-
+    [Authorize]
+    [HttpGet]
+    [Route("/courses")]
+    public IActionResult Courses()
+    {
+        return View();
+    }
 
 
 

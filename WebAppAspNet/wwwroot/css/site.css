@@ -1043,7 +1043,7 @@ footer .container span {
 @media (min-width: 992px) {
   .account-details .container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto 1fr;
     grid-template-areas: "my-aside a-details";
   }
 }
@@ -1061,8 +1061,10 @@ footer .container span {
 }
 .account-details .container aside .profile {
   display: grid;
+  grid-template-columns: auto;
   justify-content: center;
   text-align: center;
+  padding-top: 3rem;
 }
 .account-details .container aside .profile .profile-image {
   position: relative;
@@ -1115,6 +1117,23 @@ footer .container span {
     width: 20rem;
   }
 }
+.account-details .container aside nav #nav-settings span {
+  display: none;
+}
+@media (min-width: 992px) {
+  .account-details .container aside nav #nav-settings span {
+    display: block;
+  }
+}
+@media (min-width: 992px) {
+  .account-details .container aside nav #nav-settings {
+    justify-content: start;
+  }
+  .account-details .container aside nav #nav-settings i {
+    margin-left: 2rem;
+    margin-right: 1rem;
+  }
+}
 @media (min-width: 992px) {
   .account-details .container aside nav #nav-security {
     display: none;
@@ -1125,8 +1144,41 @@ footer .container span {
     display: none;
   }
 }
+@media (min-width: 992px) {
+  .account-details .container aside nav #nav-signout {
+    display: none;
+  }
+}
+.account-details .container aside nav #signout-btn {
+  display: none;
+  color: #33354D;
+  text-decoration: none;
+}
+.account-details .container aside nav #signout-btn i {
+  color: #9397AD;
+  margin-left: 2rem;
+  margin-right: 1rem;
+}
+@media (min-width: 992px) {
+  .account-details .container aside nav #signout-btn {
+    display: block;
+    padding: 8px 0;
+    background-color: transparent;
+    border-radius: 6px;
+  }
+  .account-details .container aside nav #signout-btn:hover {
+    background-color: #EFF2FC;
+  }
+}
 .account-details .container .account-information {
   grid-area: a-details;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 992px) {
+  .account-details .container .account-information {
+    margin-left: 6rem;
+  }
 }
 .account-details .container .account-information .basicinfo-form {
   border-bottom: 1px solid #D4D7E5;
@@ -1198,9 +1250,9 @@ footer .container span {
   grid-area: buttons;
   display: flex;
   gap: 2%;
+  margin-top: 0.5rem;
 }
 .account-details .container .account-information .basicinfo-form .form-content .my-buttons #btn-info-reset {
-  grid-area: btn-reset;
   width: 100%;
 }
 @media (min-width: 768px) {
@@ -1209,7 +1261,6 @@ footer .container span {
   }
 }
 .account-details .container .account-information .basicinfo-form .form-content .my-buttons #btn-info-submit {
-  grid-area: btn-submit;
   width: 100%;
 }
 @media (min-width: 768px) {
@@ -1251,6 +1302,7 @@ footer .container span {
   grid-area: buttons;
   display: flex;
   gap: 2%;
+  margin-top: 0.5rem;
 }
 .account-details .container .account-information #adressinfo-form .form-adress-content .my-buttons #btn-adress-reset {
   grid-area: btn-adress-reset;
@@ -1268,5 +1320,191 @@ footer .container span {
 @media (min-width: 768px) {
   .account-details .container .account-information #adressinfo-form .form-adress-content .my-buttons #btn-adress-submit {
     width: 9rem;
+  }
+}
+
+.courses-page .container .top-area {
+  margin-top: 3rem;
+}
+.courses-page .container .top-area p {
+  color: #9397AD;
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+}
+.courses-page .container .top-area p .fa-house {
+  margin-right: 0.5rem;
+}
+.courses-page .container .top-area p .fa-angles-right {
+  font-size: 10px;
+  margin-left: 0.5rem;
+}
+.courses-page .container .top-area p span {
+  color: #6366F1;
+  margin-left: 0.5rem;
+}
+@media (min-width: 992px) {
+  .courses-page .container .top-area .topic-and-search {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.courses-page .container .top-area .topic-and-search h2 {
+  font-weight: 800;
+}
+.courses-page .container .top-area .topic-and-search .browse-and-search {
+  display: flex;
+  gap: 1rem;
+}
+.courses-page .container .top-area .topic-and-search .browse-and-search a {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #D4D7E5;
+  padding: 8px 10px;
+  border-radius: 6px;
+  width: 100%;
+  text-decoration: none;
+  color: #565973;
+  align-items: center;
+}
+@media (min-width: 992px) {
+  .courses-page .container .top-area .topic-and-search .browse-and-search a {
+    width: 240px;
+  }
+}
+.courses-page .container .top-area .topic-and-search .browse-and-search input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  width: 100%;
+  border: 1px solid #D4D7E5;
+  color: #565973;
+}
+@media (min-width: 992px) {
+  .courses-page .container .top-area .topic-and-search .browse-and-search input {
+    width: 300px;
+  }
+}
+.courses-page .container .courses {
+  padding-top: 3rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1.5rem;
+}
+@media (min-width: 992px) {
+  .courses-page .container .courses {
+    grid-template-columns: auto auto auto;
+  }
+}
+.courses-page .container .courses .course {
+  display: inline-block;
+  border-radius: 0 0 7px 7px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  color: #0B0F19;
+  box-shadow: 0px 4px 13px -2px rgba(19, 16, 34, 0.06), 0px 4.8px 24.4px -6px rgba(19, 16, 34, 0.1);
+}
+.courses-page .container .courses .course img {
+  border-radius: 7px 7px 0 0;
+  width: 100%;
+  height: auto;
+}
+.courses-page .container .courses .course .course-content {
+  padding: 2rem 2rem;
+}
+.courses-page .container .courses .course .course-content h5 {
+  font-weight: 800;
+}
+.courses-page .container .courses .course .course-content p {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  margin: 0;
+}
+.courses-page .container .courses .course .course-content .price {
+  color: #6366F1;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+.courses-page .container .courses .course .course-content .length-rating {
+  border-top: 1px solid #E2E5F1;
+  display: block;
+  padding-top: 1.5rem;
+  color: #9397AD;
+}
+@media (min-width: 768px) {
+  .courses-page .container .courses .course .course-content .length-rating {
+    display: flex;
+  }
+}
+.courses-page .container .courses .course .course-content .length-rating .length {
+  margin-right: 1.2rem;
+}
+.courses-page .container .courses .course .course-content .length-rating .length .fa-clock {
+  font-size: 16px;
+  margin-right: 5px;
+}
+.courses-page .container .courses .course .course-content .length-rating .rating i {
+  margin-right: 5px;
+  font-size: 16px;
+}
+.courses-page .container .get-started {
+  background-color: #F3F6FF;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (min-width: 992px) {
+  .courses-page .container .get-started {
+    flex-direction: row;
+  }
+}
+.courses-page .container .get-started .left-side {
+  display: grid;
+  padding-top: 70px;
+  margin-left: 1rem;
+}
+@media (min-width: 992px) {
+  .courses-page .container .get-started .left-side {
+    margin-left: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+}
+.courses-page .container .get-started .left-side p {
+  color: #565973;
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  font-size: 24px !important;
+  font-weight: 300;
+}
+.courses-page .container .get-started .left-side h1 {
+  font-weight: 800;
+}
+.courses-page .container .get-started .left-side h1 span {
+  color: #6366F1 !important;
+}
+.courses-page .container .get-started .left-side .btn-theme {
+  width: 162px;
+}
+@media (min-width: 992px) {
+  .courses-page .container .get-started .left-side .btn-theme {
+    height: 52px;
+  }
+}
+@media (min-width: 992px) {
+  .courses-page .container .get-started img {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-right: 6rem;
   }
 }

@@ -6,14 +6,6 @@
 
  <section class="account-details">
      <div class="container">
-
-         @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
-            {
-                <div class="my-error-message">
-                    @ViewData["ErrorMessage"]
-                </div>
-            }
-
          <aside>
              <div class="profile">
                  <div class="profile-image">
@@ -26,10 +18,11 @@
                  </div>
              </div>
              <nav>
-                <a id="nav-settings" class="btn-theme btn-nav active" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i></a>
+                <a id="nav-settings" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i><span>Account Details</span></a>
                 <a id="nav-security" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-lock"></i></a>
                 <a id="nav-bookmark" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-bookmark"></i></a>
                 <a id="nav-signout" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i></a>
+                <a id="signout-btn" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i>Sign Out</a>
              </nav>
          </aside>
          <div class="account-information">
@@ -66,7 +59,6 @@
                         <button id="btn-info-reset" class="btn-gray" type="reset">Cancel</button>
                         <button id="btn-info-submit" class="btn-theme" type="submit">Save changes</button>
                     </div>
-                    
                  </div>
              </form>
 
@@ -100,8 +92,6 @@
                     </div>
                  </div>
              </form>
-
-            
          </div>
      </div>
  </section>

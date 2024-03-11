@@ -2,19 +2,14 @@
 
 
 
-
-
     .container {
-        
+
         @include lg {
             display: grid;
-            grid-template-columns: auto auto;
-            grid-template-areas: "my-aside a-details";
+            grid-template-columns: auto 1fr;
+            grid-template-areas: 'my-aside a-details';
         }
 
-
-        .my-error-message {
-        }
 
         aside {
             grid-area: my-aside;
@@ -25,21 +20,20 @@
                 width: 20rem;
                 padding-right: 2rem;
                 border-right: 1px solid $gray-400;
-                
             }
 
             .profile {
                 display: grid;
+                grid-template-columns: auto;
                 justify-content: center;
                 text-align: center;
+                padding-top: 3rem;
 
 
                 .profile-image {
                     position: relative;
                     z-index: 1;
 
-                    img {
-                    }
 
                     .btn-white-circle {
                         height: 36px;
@@ -97,17 +91,30 @@
                     }
 
                     @include shadow-m;
-
-
-
-                    &:hover {
-                    }
                 }
 
-                .active {
-                }
+
 
                 #nav-settings {
+
+                    span {
+                        display: none;
+
+                        @include lg {
+                            display: block;
+                        }
+                    }
+
+                    @include lg {
+                        justify-content: start;
+
+
+
+                        i {
+                            margin-left: 2rem;
+                            margin-right: 1rem;
+                        }
+                    }
                 }
 
                 #nav-security {
@@ -123,20 +130,56 @@
                 }
 
                 #nav-signout {
+                    @include lg {
+                        display: none;
+                    }
+                }
+
+                #signout-btn {
+                    display: none;
+                    color: $gray-800;
+                    text-decoration: none;
+
+                    i {
+                        color: $gray-600;
+                        margin-left: 2rem;
+                        margin-right: 1rem;
+                    }
+
+                    @include lg {
+                        display: block;
+                        padding: 8px 0;
+                        background-color: transparent;
+                        border-radius: 6px;
+
+                        &:hover {
+                            background-color: $gray-200;
+                        }
+                    }
                 }
             }
         }
 
         .account-information {
             grid-area: a-details;
-            
+            padding-top: 3rem;
+            padding-bottom: 5rem;
+
+            @include lg {
+                margin-left: 6rem;
+            }
+
+
 
 
             .basicinfo-form {
                 border-bottom: 1px solid $gray-400;
 
 
+
+
                 h1 {
+
                     @include h2;
                     text-align: center;
 
@@ -153,6 +196,7 @@
                 h5 {
                     text-align: center;
                     color: $theme;
+
 
                     @include lg {
                         text-align: start;
@@ -171,8 +215,7 @@
                         grid-template-areas: 'fname lname' 'email phone' 'bio bio' 'buttons buttons';
                     }
 
-                    .input-group {
-                    }
+
 
                     #form-firstname {
                         grid-area: fname;
@@ -200,9 +243,9 @@
                         grid-area: buttons;
                         display: flex;
                         gap: 2%;
+                        margin-top: 0.5rem;
 
                         #btn-info-reset {
-                            grid-area: btn-reset;
                             width: 100%;
 
                             @include md {
@@ -211,7 +254,6 @@
                         }
 
                         #btn-info-submit {
-                            grid-area: btn-submit;
                             width: 100%;
 
                             @include md {
@@ -263,6 +305,7 @@
                         grid-area: buttons;
                         display: flex;
                         gap: 2%;
+                        margin-top: 0.5rem;
 
 
                         #btn-adress-reset {
