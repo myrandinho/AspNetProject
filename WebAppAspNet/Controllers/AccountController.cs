@@ -116,6 +116,16 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
         return View();
     }
 
+    [Authorize]
+    [HttpGet]
+    [Route("/courses/singlecourse")]
+    public IActionResult SingleCourse()
+    {
+        return View();
+    }
+
+
+
 
 
 
