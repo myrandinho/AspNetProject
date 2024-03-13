@@ -1,0 +1,260 @@
+.security {
+    padding-top: 5rem;
+
+    .container {
+
+        @include lg {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-areas: 'my-aside security';
+        }
+
+        aside {
+            grid-area: my-aside;
+            margin: 0;
+            padding: 0;
+
+            @include lg {
+                width: 20rem;
+                padding-right: 2rem;
+                border-right: 1px solid $gray-400;
+            }
+
+            .profile {
+                display: grid;
+                grid-template-columns: auto;
+                justify-content: center;
+                text-align: center;
+                padding-top: 3rem;
+
+
+                .profile-image {
+                    position: relative;
+                    z-index: 1;
+
+
+                    .btn-white-circle {
+                        height: 36px;
+                        width: 36px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 50%;
+                        border: 1px solid #E2E5F1;
+                        text-decoration: none;
+                        color: #33354D;
+                        position: absolute;
+                        right: 45px;
+                        bottom: 10px;
+                        background-color: #fff;
+                        z-index: 2;
+                    }
+                }
+
+                .profile-info {
+
+                    h3 {
+                        font-weight: 800;
+                        color: $gray-900;
+                    }
+
+                    p {
+                        color: $gray-700;
+                    }
+                }
+            }
+
+            nav {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-bottom: 2rem;
+
+                @include lg {
+                    display: grid;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+
+
+
+                .btn-nav {
+                    width: 40px;
+                    height: 40px;
+                    padding: 0;
+
+                    @include lg {
+                        width: 20rem;
+                    }
+
+                    @include shadow-m;
+                }
+
+
+
+                #nav-settings {
+
+                    span {
+                        display: none;
+
+                        @include lg {
+                            display: block;
+                        }
+                    }
+
+                    @include lg {
+                        justify-content: start;
+
+
+
+                        i {
+                            margin-left: 2rem;
+                            margin-right: 1rem;
+                        }
+                    }
+                }
+
+                #nav-security {
+                    @include lg {
+                        display: none;
+                    }
+                }
+
+                #nav-bookmark {
+                    @include lg {
+                        display: none;
+                    }
+                }
+
+                #nav-signout {
+                    @include lg {
+                        display: none;
+                    }
+                }
+
+                #signout-btn {
+                    display: none;
+                    color: $gray-800;
+                    text-decoration: none;
+
+                    i {
+                        color: $gray-600;
+                        margin-left: 2rem;
+                        margin-right: 1rem;
+                    }
+
+                    @include lg {
+                        display: block;
+                        padding: 8px 0;
+                        background-color: transparent;
+                        border-radius: 6px;
+
+                        &:hover {
+                            background-color: $gray-200;
+                        }
+                    }
+                }
+            }
+        }
+
+        .security-content {
+            grid-area: security;
+            padding-left: 0;
+
+            @include lg {
+                padding-left: 6rem;
+            }
+
+            h2 {
+                font-weight: 800;
+                margin-bottom: 3rem;
+            }
+
+            h5 {
+                font-weight: 700;
+                color: $theme;
+            }
+
+            form {
+                display: block;
+                border-bottom: 1px solid $gray-400;
+                grid-column-gap: 0;
+
+
+                @include md {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-column-gap: 1rem;
+                    grid-template-areas: 'current current' 'new confirm-new' 'buttons buttons';
+                }
+
+
+                #form-current-password {
+                    grid-area: current;
+                    
+
+                    @include md {
+                        width: 49.5%;
+                    }
+                }
+
+                #form-new-password {
+                    grid-area: new;
+                    
+                }
+
+                #form-confirm-new-password {
+                    grid-area: confirm-new;
+                    
+                }
+
+                .forms-btns {
+                    grid-area: buttons;
+                    margin-bottom: 3rem;
+                    
+
+                    @include md {
+                        display: flex;
+                    }
+
+                    .btn-gray {
+                        margin-bottom: 1rem;
+
+                        @include md {
+                            margin-bottom: 0;
+                            margin-right: 1rem;
+                        }
+                    }
+
+                    .btn-theme {
+                    }
+                }
+            }
+
+            .delete-account {
+
+                h5 {
+                    font-weight: 700;
+                    color: $theme;
+                    margin-top: 3rem;
+                }
+
+                p {
+                }
+
+                #confirm-delete {
+                    margin: 1rem 0;
+                }
+
+                .delete-btn {
+                    background-color: $danger;
+                    color: #fff;
+                    border: none;
+                    border-radius: 7px;
+                    padding: 8px 28px;
+                }
+            }
+        }
+    }
+}

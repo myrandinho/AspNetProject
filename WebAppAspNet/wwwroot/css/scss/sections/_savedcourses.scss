@@ -1,0 +1,207 @@
+.saved-courses {
+
+    .container {
+
+        @include lg {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-areas: 'my-aside savedcourse';
+        }
+
+
+        aside {
+            grid-area: my-aside;
+            margin: 0;
+            padding: 0;
+
+            @include lg {
+                width: 20rem;
+                padding-right: 2rem;
+                border-right: 1px solid $gray-400;
+            }
+
+            .profile {
+                display: grid;
+                grid-template-columns: auto;
+                justify-content: center;
+                text-align: center;
+                padding-top: 3rem;
+
+
+                .profile-image {
+                    position: relative;
+                    z-index: 1;
+
+
+                    .btn-white-circle {
+                        height: 36px;
+                        width: 36px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 50%;
+                        border: 1px solid #E2E5F1;
+                        text-decoration: none;
+                        color: #33354D;
+                        position: absolute;
+                        right: 45px;
+                        bottom: 10px;
+                        background-color: #fff;
+                        z-index: 2;
+                    }
+                }
+
+                .profile-info {
+
+                    h3 {
+                        font-weight: 800;
+                        color: $gray-900;
+                    }
+
+                    p {
+                        color: $gray-700;
+                    }
+                }
+            }
+
+            nav {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-bottom: 2rem;
+
+                @include lg {
+                    display: grid;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+
+
+
+                .btn-nav {
+                    width: 40px;
+                    height: 40px;
+                    padding: 0;
+
+                    @include lg {
+                        width: 20rem;
+                    }
+
+                    @include shadow-m;
+                }
+
+
+
+                #nav-settings {
+
+                    span {
+                        display: none;
+
+                        @include lg {
+                            display: block;
+                        }
+                    }
+
+                    @include lg {
+                        justify-content: start;
+
+
+
+                        i {
+                            margin-left: 2rem;
+                            margin-right: 1rem;
+                        }
+                    }
+                }
+
+                #nav-security {
+                    @include lg {
+                        display: none;
+                    }
+                }
+
+                #nav-bookmark {
+                    @include lg {
+                        display: none;
+                    }
+                }
+
+                #nav-signout {
+                    @include lg {
+                        display: none;
+                    }
+                }
+
+                #signout-btn {
+                    display: none;
+                    color: $gray-800;
+                    text-decoration: none;
+
+                    i {
+                        color: $gray-600;
+                        margin-left: 2rem;
+                        margin-right: 1rem;
+                    }
+
+                    @include lg {
+                        display: block;
+                        padding: 8px 0;
+                        background-color: transparent;
+                        border-radius: 6px;
+
+                        &:hover {
+                            background-color: $gray-200;
+                        }
+                    }
+                }
+            }
+        }
+
+        .content {
+            grid-area: savedcourse;
+            padding-top: 3rem;
+
+            @include lg {
+                padding-left: 6rem;
+            }
+
+            .topic-and-deleteall {
+                display: block;
+                justify-content: space-between;
+                margin-bottom: 2rem;
+
+                @include md {
+                    display: flex;
+                }
+
+                h2 {
+                    font-weight: 800;
+                }
+
+                .my-delete-btn {
+                    padding: 8px 28px;
+                    color: $danger;
+                    border: 1px solid #EF4444;
+                    border-radius: 6px;
+                    text-decoration: none;
+
+                    i {
+                        margin-right: 0.5rem;
+                    }
+                }
+            }
+
+            .course-area {
+                display: grid;
+                grid-template-columns: auto;
+                grid-column-gap: 1.5rem;
+                
+
+                @include md {
+                    grid-template-columns: auto auto;
+                }
+            }
+        }
+    }
+}

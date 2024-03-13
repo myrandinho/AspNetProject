@@ -1,0 +1,69 @@
+﻿@model AccountDetailsViewModel
+
+
+
+<section class="security">
+    <div class="container">
+        <aside>
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="~/Images/@Model.ProfileInfo.ProfileImageUrl" alt="" />
+                    <a class="btn-white-circle" href="#"><i class="fa-regular fa-refresh"></i></a>
+                </div>
+                <div class="profile-info">
+                    <h3>@Model.ProfileInfo.FirstName @Model.ProfileInfo.LastName</h3>
+                    <p>@Model.ProfileInfo.Email</p>
+                </div>
+            </div>
+            <nav>
+                <a id="nav-settings" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i><span>Account Details</span></a>
+                <a id="nav-security" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-lock"></i></a>
+                <a id="nav-bookmark" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-bookmark"></i></a>
+                <a id="nav-signout" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i></a>
+                <a id="signout-btn" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i>Sign Out</a>
+            </nav>
+        </aside>
+
+        <div class="security-content">
+            <h2>Security</h2>
+            <h5>Password</h5>
+            <form>
+                <div id="form-current-password" class="input-group">
+                    <label>Current password</label>
+                    <span></span>
+                    <input placeholder="********"/>
+                </div>
+                <div id="form-new-password" class="input-group">
+                    <label>New password</label>
+                    <span ></span>
+                    <input placeholder="********" />
+                </div>
+                <div id="form-confirm-new-password" class="input-group">
+                    <label>Confirm new password</label>
+                    <span ></span>
+                    <input placeholder="********" />
+                </div>
+                <div class="forms-btns">
+                    <button class="btn-gray">Cancel</button>
+                    <button class="btn-theme">Change password</button>
+                </div>
+            </form>
+
+            <div class="delete-account">
+                <h5>Delete account</h5>
+                <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
+                <div id="confirm-delete" class="checkbox">
+                    <div class="checkbox-group">
+                        <input type="checkbox"/>
+                        <label>Yes, i want to delete my account.</label>
+                    </div>
+                </div>
+                <button class="delete-btn">Delete</button>
+            </div>
+
+        </div>
+    </div>
+    
+
+    
+</section>

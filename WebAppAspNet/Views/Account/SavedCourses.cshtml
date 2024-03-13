@@ -1,0 +1,39 @@
+﻿@model AccountDetailsViewModel
+
+
+
+
+<section class="saved-courses">
+    <div class="container">
+        <aside>
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="~/Images/@Model.ProfileInfo.ProfileImageUrl" alt="" />
+                    <a class="btn-white-circle" href="#"><i class="fa-regular fa-refresh"></i></a>
+                </div>
+                <div class="profile-info">
+                    <h3>@Model.ProfileInfo.FirstName @Model.ProfileInfo.LastName</h3>
+                    <p>@Model.ProfileInfo.Email</p>
+                </div>
+            </div>
+            <nav>
+                <a id="nav-settings" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i><span>Account Details</span></a>
+                <a id="nav-security" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-lock"></i></a>
+                <a id="nav-bookmark" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-bookmark"></i></a>
+                <a id="nav-signout" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i></a>
+                <a id="signout-btn" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i>Sign Out</a>
+            </nav>
+        </aside>
+        <div class="content">
+            <div class="topic-and-deleteall">
+                <h2>Saved Items</h2>
+                <a class="my-delete-btn" href="#"><i class="fa-regular fa-trash"></i>Delete all</a>
+            </div>
+            <div class="course-area">
+                <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
+                    <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
+                        <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
+            </div>
+        </div>
+    </div>
+</section>

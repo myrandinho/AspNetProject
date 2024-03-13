@@ -306,6 +306,7 @@
         justify-content: center;
         align-items: center;
         height: 100%;
+        padding-top: 5rem;
 
 
         .content_2 {
@@ -315,11 +316,21 @@
 
                 h2 {
                     font-weight: 800;
+
+                    @include lg {
+                        margin-bottom: 3rem;
+                    }
                 }
 
                 .info-detail {
                     @include md {
                         margin-right: 40%;
+                    }
+
+                    @include lg {
+                        display: grid;
+                        grid-template-columns: auto auto;
+                        margin-bottom: 2rem;
                     }
 
                     .gray-circle {
@@ -331,27 +342,35 @@
                         justify-content: center;
                         align-items: center;
 
+                        @include lg {
+                            margin-right: 2rem;
+                        }
+
                         span {
                             font-size: 25px;
                             font-weight: 700;
                         }
                     }
 
-                    h3 {
-                        font-weight: 800;
-                    }
+                    .program-information {
 
-                    p {
-                        color: $gray-700;
+                        h3 {
+                            font-weight: 800;
+                        }
+
+                        p {
+                            color: $gray-700;
+                        }
                     }
                 }
             }
 
             .creator-showcase {
 
-                @include md {
+                @include xl {
                     display: grid;
                     grid-template-columns: auto 1fr;
+                    margin-top: 5rem;
                 }
 
                 background-color: #030206;
@@ -365,7 +384,7 @@
                     padding: 1rem;
 
                     @include md {
-                        padding: 10%;
+                        padding: 7%;
                     }
 
                     p {
@@ -383,6 +402,7 @@
                     }
 
                     .google-meta-btns {
+
                         .youtube-sub-btn {
                             padding: 8px 28px;
                             background-color: #EF4444;

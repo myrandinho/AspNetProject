@@ -1,0 +1,157 @@
+.contact-page {
+
+
+    .contact-class {
+
+
+        .upper {
+            background-color: #F3F6FF;
+
+            @include md {
+                height: 30%;
+            }
+
+
+
+            .contact-content {
+                display: grid;
+                grid-template-columns: auto;
+                align-items: center;
+                padding: 2rem;
+
+
+
+
+                p {
+                    color: $gray-600;
+
+                    @include text-s;
+
+                    .fa-house {
+                        margin-right: 0.5rem;
+                    }
+
+                    .fa-angles-right {
+                        font-size: 10px;
+                        margin-left: 0.5rem;
+                    }
+
+                    span {
+                        color: $theme;
+                        margin-left: 0.5rem;
+                    }
+                }
+
+                h1 {
+                    font-weight: 800;
+                    margin-bottom: 2rem;
+                }
+
+                .contact-component {
+                    margin-bottom: 2rem;
+
+                    @include md {
+                        display: flex;
+                    }
+
+
+                    .circle-logo {
+                        height: 60px;
+                        width: 60px;
+                        border-radius: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: #ffffff;
+                        margin-right: 2rem;
+
+                        i {
+                            color: $theme;
+                            font-size: 20px;
+                        }
+                    }
+
+                    .component-info {
+
+
+                        h3 {
+                            font-weight: 800;
+                        }
+
+                        p {
+                            
+                            @include md {
+                                padding-right: 50%;
+                            }
+
+                            @include lg {
+                                padding-right: 20%;
+                            }
+                        }
+
+                        h6 {
+                            font-weight: 600;
+                            color: $theme;
+
+
+                            i {
+                                margin-left: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .lower {
+            width: 100%;
+
+            img {
+                height: auto;
+                width: 100%;
+            }
+
+            form {
+                background-color: #ffffff;
+
+                @include md {
+                    width: 40%;
+                    position: absolute;
+                    right: 10%;
+                    top: 20%;
+                    padding: 2.5rem;
+                    border-radius: 7px;
+                }
+
+                @include xl {
+                    width: 30%;
+                    right: 25%;
+                }
+
+                h3 {
+                    font-weight: 800;
+                }
+
+                #form-fullname {
+                }
+
+                #form-email {
+                }
+
+                .service-dropdown {
+                    display: grid;
+                    grid-template-columns: auto;
+                }
+
+                #form-message {
+                }
+
+                .btn-theme {
+                    @include lg {
+                       width: 237px;
+                    }
+                }
+            }
+        }
+    }
+}
