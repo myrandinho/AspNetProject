@@ -17,11 +17,10 @@
                 </div>
             </div>
             <nav>
-                <a id="nav-settings" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i><span>Account Details</span></a>
-                <a id="nav-security" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-lock"></i></a>
-                <a id="nav-bookmark" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-bookmark"></i></a>
-                <a id="nav-signout" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i></a>
-                <a id="signout-btn" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i>Sign Out</a>
+                <a id="nav-settings" class="btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i><span>Account Details</span></a>
+                <a id="nav-security" class="btn-nav " asp-action="Security" asp-controller="Account"><i class="fa-regular fa-lock"></i><span>Security</span></a>
+                <a id="nav-bookmark" class="btn-nav active" asp-action="SavedCourses" asp-controller="Account"><i class="fa-regular fa-bookmark"></i><span>Saved Courses</span></a>
+                <a id="nav-signout" class="btn-nav" asp-action="SignOut" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i><span>Sign Out</span></a>
             </nav>
         </aside>
         <div class="content">

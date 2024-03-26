@@ -2,9 +2,12 @@
     padding-top: 7.5rem;
     padding-bottom: 7.5rem;
     background-color: #F3F6FF;
+    
+    
 
     .container {
         text-align: center;
+        
 
         h2 {
             @include h2;

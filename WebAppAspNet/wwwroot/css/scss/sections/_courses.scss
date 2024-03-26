@@ -61,7 +61,7 @@
                         width: 100%;
                         border: 1px solid $gray-400;
                         color: $gray-700;
-                        
+
 
                         @include lg {
                             width: 300px;
@@ -74,11 +74,11 @@
         .courses {
             padding-top: 3rem;
             display: grid;
-            grid-template-columns: auto auto;
+            grid-template-columns: 1fr 1fr;
             column-gap: 1.5rem;
 
             @include lg {
-                grid-template-columns: auto auto auto;
+                grid-template-columns: 1fr 1fr 1fr;
             }
 
 
@@ -90,6 +90,22 @@
                 text-decoration: none;
                 color: $gray-900;
                 @include shadow-l;
+                position: relative;
+
+                .best-seller {
+                    @include text-s;
+                    color: #ffffff;
+                    background-color: #22C55E;
+                    width: 86px;
+                    height: 22px;
+                    border-radius: 4px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    top: 16px;
+                    left: 16px;
+                }
 
 
 
@@ -112,6 +128,24 @@
                     p {
                         @include text-s;
                         margin: 0;
+                    }
+
+                    .prices {
+                        display: flex;
+
+                        .discount-price {
+                            color: red;
+                            margin-top: 8px;
+                            margin-bottom: 16px;
+                            margin-right: 1rem;
+                        }
+
+                        .old-price {
+                            color: $gray-400;
+                            margin-top: 8px;
+                            margin-bottom: 16px;
+                            text-decoration: line-through;
+                        }
                     }
 
                     .price {
@@ -205,6 +239,7 @@
             }
 
             img {
+
                 @include lg {
                     padding-top: 2rem;
                     padding-bottom: 2rem;

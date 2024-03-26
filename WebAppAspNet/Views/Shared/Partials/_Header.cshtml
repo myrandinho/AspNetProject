@@ -1,6 +1,9 @@
-﻿
+﻿@inject SignInManager<UserEntity> _signInManager;
 
-@inject SignInManager<UserEntity> _signInManager;
+@{
+    var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
+    var isDark = (themeMode == "dark") ? true : false;
+}
 
 
 
@@ -24,7 +27,7 @@
         <div class="btn-switch">
             <label>Light</label>
             <label class="switch" for="switch-mode">
-                <input type="checkbox" id="switch-mode" />
+                <input type="checkbox" id="switch-mode" checked="@isDark"  />
                 <span class="slider round"></span>
             </label>
             <label>Dark</label>
@@ -46,3 +49,5 @@
 
     </div>
 </header>
+
+

@@ -5,16 +5,27 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.Json;
+using Microsoft.Identity.Client;
+using Newtonsoft.Json;
 using WebAppAspNet.ViewModels;
 using WebAppAspNet.ViewModels.Account;
 
 namespace WebAppAspNet.Controllers;
 
-public class AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, AdressService adressService) : Controller
+public class AccountController : Controller
 {
-    private readonly UserManager<UserEntity> _userManager = userManager;
-    private readonly SignInManager<UserEntity> _signInManager = signInManager;
-    private readonly AdressService _adressService = adressService;
+    private readonly UserManager<UserEntity> _userManager;
+    private readonly SignInManager<UserEntity> _signInManager;
+    private readonly AdressService _adressService;
+
+    public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, AdressService adressService)
+    {
+        _userManager = userManager;
+        _signInManager = signInManager;
+        _adressService = adressService;
+    }
+
 
     [HttpGet]
     [Route("/signup")]
@@ -90,8 +101,8 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
         }
 
-        ModelState.AddModelError("IncorrectValues", "Incorrect email or password");
-        ViewData["ErrorMessage"] = "Incorrect email or password";
+        //ModelState.AddModelError("IncorrectValues", "Incorrect email or password");
+        //ViewData["ErrorMessage"] = "Incorrect email or password";
         return View(viewModel);
     }
 
@@ -104,16 +115,55 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
     }
 
 
+    [HttpPost]
+    public async Task<IActionResult> DeleteUser(string id)
+    {
+        if (ModelState.IsValid)
+        {
+            var user = await _userManager.FindByIdAsync(id);
 
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with id = {id} cannot be found";
+                return View();
+            }
+            else
+            {
+                var result = await _userManager.DeleteAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+
+            
+        }
+        
+        return View();
+    }
 
 
 
     [Authorize]
     [HttpGet]
     [Route("/courses")]
-    public IActionResult Courses()
+    public async Task<IActionResult> Courses()
     {
-        return View();
+        using var http = new HttpClient();
+        var response = await http.GetAsync("https://localhost:7127/api/courses");
+        var json = await response.Content.ReadAsStringAsync();
+        var data = JsonConvert.DeserializeObject<IEnumerable<CourseEntity>>(json);
+
+        return View(data);
     }
 
     [Authorize]
@@ -144,7 +194,12 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
         return View(viewModel);
     }
 
-
+    [HttpGet]
+    [Route("/account/newpassword")]
+    public IActionResult PasswordUpdated()
+    {
+        return View();
+    }
 
     [Authorize]
     [HttpGet]
@@ -158,6 +213,42 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
         return View(viewModel);
     }
+
+    [HttpPost]
+    [Route("/account/security")]
+    public async Task<IActionResult> Security(AccountDetailsViewModel viewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return View("error404");
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, viewModel.SecurityForm.CurrentPassword, viewModel.SecurityForm.NewPassword);
+
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View();
+            }
+
+            await _signInManager.RefreshSignInAsync(user);
+            return RedirectToAction("Index", "Home");
+
+        }
+
+
+        return View(viewModel);
+    }
+
+
+    
 
 
     [Authorize]
@@ -315,6 +406,9 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
             if (user != null)
             {
                 var adress = await _adressService.GetAdressAsync(user.Id);
+
+                if (adress != null)
+                {
                 return new AdressInfoFormViewModel
                 {
                     AdressLine_1 = adress.AdressLine_1,
@@ -322,6 +416,8 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
                     PostalCode = adress.PostalCode,
                     City = adress.City,
                 };
+            }
+               
             }
             
 

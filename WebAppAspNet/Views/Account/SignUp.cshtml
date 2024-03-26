@@ -37,14 +37,13 @@
                     <span asp-validation-for="ConfirmPassword"></span>
                     <input asp-for="ConfirmPassword" />
                 </div>
-                <div id="form-terms" class="checkbox">
-                    <div class="checkbox-group">
-                        <input asp-for="TermsAndConditions" />
-                        <label asp-for="TermsAndConditions">I agree to the <a asp-controller="About" asp-action="Terms">Terms</a> & <a asp-controller="About" asp-action="Conditions">Conditions</a>.</label>
-                    </div>
+                <label class="checkbox-box">
+                    <input asp-for="TermsAndConditions" type="checkbox">
+                    <span class="min-checkmark"></span>
+                    <p asp-for="TermsAndConditions">I agree to the <a asp-controller="About" asp-action="Terms">Terms</a> & <a asp-controller="About" asp-action="Conditions">Conditions</a>.</p>
+                </label>
+                <span asp-validation-for="TermsAndConditions"></span>
 
-                    <span asp-validation-for="TermsAndConditions"></span>
-                </div>
                 <button id="form-submit" class="btn-theme-s" type="submit">Sign up</button>
             </div>
         </form>
@@ -53,3 +52,14 @@
 </section>
 
 <script src="~/js/validation.js"></script>
+
+
+
+@* <div id="form-terms" class="checkbox">
+    <div class="checkbox-group">
+        <input asp-for="TermsAndConditions" />
+        <label asp-for="TermsAndConditions">I agree to the <a asp-controller="About" asp-action="Terms">Terms</a> & <a asp-controller="About" asp-action="Conditions">Conditions</a>.</label>
+    </div>
+
+    <span asp-validation-for="TermsAndConditions"></span>
+</div> *@

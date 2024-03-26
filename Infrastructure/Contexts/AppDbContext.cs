@@ -9,6 +9,8 @@ namespace Infrastructure.Contexts;
 public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<UserEntity>(options)
 {
     public DbSet<AdressEntity> Adresses { get; set; }
+    public DbSet<CourseEntity> Courses { get; set; }
+    public DbSet<SubscriberEntity> Subscribers { get; set; }
 
     //protected override void OnModelCreating(ModelBuilder builder)
     //{

@@ -10,7 +10,7 @@
     text-decoration: none;
 }
 
-.btn-theme { 
+.btn-theme {
     @include button;
     background: $theme;
     color: $white;
@@ -20,7 +20,7 @@
         text-decoration: none;
         background: $gray-700;
         color: $white;
-    } 
+    }
 }
 
 .btn-theme-s {
@@ -136,4 +136,23 @@
         background: $gray-700;
         color: $white;
     } 
+}
+
+.active {
+    background-color: $theme;
+
+
+    span {
+        color: #ffffff;
+
+        &:hover {
+            color: $gray-900;
+        }
+    }
+
+    &:hover {
+        text-decoration: none;
+        background: $gray-700;
+        color: $white;
+    }
 }

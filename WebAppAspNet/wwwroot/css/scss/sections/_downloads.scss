@@ -1,0 +1,120 @@
+.download {
+    background-color: #F3F6FF;
+
+    .container {
+        background-color: #EFF2FC;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 3rem;
+
+        @include lg {
+            display: grid;
+            grid-template-columns: auto 1fr;
+        }
+
+        img {
+            max-width: 75%;
+            height: auto;
+            margin-bottom: 2rem;
+
+            @include lg {
+                max-width: 100%;
+                margin-left: 10rem;
+            }
+        }
+
+        .download-content {
+            display: flex;
+            flex-direction: column;
+
+            @include lg {
+                padding-left: 5rem;
+            }
+
+
+            h2 {
+                @include h4;
+
+                @include lg {
+                    @include h2;
+                    padding-right: 15rem;
+                    padding-bottom: 1rem;
+                }
+            }
+
+            .apple-and-googleplay {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+
+
+                @include lg {
+                    grid-template-columns: 1fr;
+                }
+
+
+
+
+                .download-btn-and-reviews {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+
+                    @include lg {
+                        justify-content: start;
+                    }
+
+                    .download-info {
+                        display: none;
+
+                        @include lg {
+                            display: block;
+                        }
+
+                        .txt1 {
+                            margin: 0 0 0 0;
+                            color: #9397AD;
+                        }
+
+                        .stars {
+
+                            i {
+                                color: #FFBA08;
+                                font-size: 14px;
+                            }
+                        }
+
+                        h6 {
+                            display: block;
+                        }
+
+                        .txt2 {
+                            margin: 0 0 0 0;
+                            color: #565973;
+                        }
+                    }
+
+
+                    .btn-position {
+                        display: flex;
+                        align-items: end;
+
+                        .dl-btn {
+                            width: 10rem;
+                            height: 2.5rem;
+                            display: inline-block;
+                            align-items: end;
+                            margin: 0 0 0 0;
+
+
+                            img {
+                                width: 10rem;
+                                height: 2.5rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,10 +1,10 @@
-﻿@model AccountDetailsViewModel
-
-
+﻿@inject UserManager<UserEntity> userManager;
+ @model AccountDetailsViewModel
 
 <section class="security">
     <div class="container">
         <aside>
+           
             <div class="profile">
                 <div class="profile-image">
                     <img src="~/Images/@Model.ProfileInfo.ProfileImageUrl" alt="" />
@@ -16,50 +16,52 @@
                 </div>
             </div>
             <nav>
-                <a id="nav-settings" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i><span>Account Details</span></a>
-                <a id="nav-security" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-lock"></i></a>
-                <a id="nav-bookmark" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-bookmark"></i></a>
-                <a id="nav-signout" class="btn-theme btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i></a>
-                <a id="signout-btn" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i>Sign Out</a>
+                <a id="nav-settings" class="btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i><span>Account Details</span></a>
+                <a id="nav-security" class="btn-nav active" asp-action="Security" asp-controller="Account"><i class="fa-regular fa-lock"></i><span>Security</span></a>
+                <a id="nav-bookmark" class="btn-nav" asp-action="SavedCourses" asp-controller="Account"><i class="fa-regular fa-bookmark"></i><span>Saved Courses</span></a>
+                <a id="nav-signout" class="btn-nav" asp-action="SignOut" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i><span>Sign Out</span></a>
             </nav>
         </aside>
 
         <div class="security-content">
             <h2>Security</h2>
             <h5>Password</h5>
-            <form>
+            <form method="post">
+               
                 <div id="form-current-password" class="input-group">
-                    <label>Current password</label>
-                    <span></span>
-                    <input placeholder="********"/>
+                    <label asp-for="@Model.SecurityForm.CurrentPassword"></label>
+                    <input id="current-pw" asp-for="@Model.SecurityForm.CurrentPassword" />
+                    
                 </div>
                 <div id="form-new-password" class="input-group">
-                    <label>New password</label>
-                    <span ></span>
-                    <input placeholder="********" />
+                    <label asp-for="@Model.SecurityForm.NewPassword"></label>
+                    <input id="new-pw" asp-for="@Model.SecurityForm.NewPassword" />
                 </div>
                 <div id="form-confirm-new-password" class="input-group">
-                    <label>Confirm new password</label>
-                    <span ></span>
-                    <input placeholder="********" />
+                    <label asp-for="@Model.SecurityForm.ConfirmedPassword"></label>
+                    <input id="confirmed-pw" asp-for="@Model.SecurityForm.ConfirmedPassword" />
                 </div>
                 <div class="forms-btns">
                     <button class="btn-gray">Cancel</button>
-                    <button class="btn-theme">Change password</button>
+                    <button type="submit" class="btn-theme">Change password</button>
                 </div>
             </form>
 
-            <div class="delete-account">
+            
+                
+            <form class="delete-account" method="post" asp-action="DeleteUser" asp-route-id="@userManager.GetUserId(User)">
                 <h5>Delete account</h5>
-                <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
-                <div id="confirm-delete" class="checkbox">
-                    <div class="checkbox-group">
-                        <input type="checkbox"/>
-                        <label>Yes, i want to delete my account.</label>
-                    </div>
-                </div>
-                <button class="delete-btn">Delete</button>
-            </div>
+                <p class="delete-info">When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
+                <label class="checkbox-box">
+                    <input id="deleting-user"  asp-for="DeleteUser.deleteConfirmation"  type="checkbox">
+                    <span class="min-checkmark"></span>
+                    <p>Yes, want to delete my account.</p>
+                </label>
+                <button class="delete-btn" type="submit" onclick="Validate()" >Delete</button>
+            </form>
+
+
+
 
         </div>
     </div>
@@ -67,3 +69,7 @@
 
     
 </section>
+
+<script src="~/js/newpassword-validator.js"></script>
+@* <script src="~/js/deleteconfirmation.js"></script> *@
+<script src="~/js/validation.js"></script>

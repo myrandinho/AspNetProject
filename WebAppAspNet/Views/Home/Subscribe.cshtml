@@ -1,0 +1,64 @@
+﻿@model SuberscribeViewModel
+
+@* @{
+    ViewData["Title"] = "Subscribe";
+} *@
+
+<section class="subscribe">
+    <div class="container">
+        <div class="content">
+            <form asp-controller="Home" asp-action="Subscribe" method="post">
+                <div class="headline-and-image">
+                    <h2>Don't Want to Miss Anything?</h2>
+                    <img src="/Images/curly-arrow.svg">
+                </div>
+                <div class="checkbox-section">
+                    <h6>Sign up for Newsletters</h6>
+                    <div class="checkbox-area">
+                        <label class="checkbox-box">
+                            <input type="checkbox">
+                            <span class="min-checkmark"></span>
+                            <p>Daily Newsletter</p>
+                        </label>
+                        <label class="checkbox-box">
+                            <input type="checkbox">
+                            <span class="min-checkmark"></span>
+                            <p>Advertising Updates</p>
+                        </label>
+                        <label class="checkbox-box">
+                            <input type="checkbox">
+                            <span class="min-checkmark"></span>
+                            <p>Week in Review</p>
+                        </label>
+                        <label class="checkbox-box">
+                            <input type="checkbox">
+                            <span class="min-checkmark"></span>
+                            <p>Event Updates</p>
+                        </label>
+                        <label class="checkbox-box">
+                            <input type="checkbox">
+                            <span class="min-checkmark"></span>
+                            <p>Startups Weekly</p>
+                        </label>
+                        <label class="checkbox-box">
+                            <input type="checkbox">
+                            <span class="min-checkmark"></span>
+                            <p>Podcasts</p>
+                        </label>
+                    </div>
+                </div>
+                <div class="input-and-sub-btn">
+                    <input asp-for="@Model.Email" type="email" placeholder="Your Email" />
+                    <button class="btn-theme-s" type="submit">Subscribe*</button>
+
+                </div>
+                <p>* Yes, I agree to the terms and privacy policy.</p>
+                @if (Model.IsSubscribed)
+                {
+                <div>You are subscribed</div>
+                }
+
+            </form>
+        </div>
+    </div>
+</section>

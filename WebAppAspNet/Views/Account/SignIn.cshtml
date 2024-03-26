@@ -14,7 +14,7 @@
                 </div>
             }
             
-
+            
             <h1>Welcome Back</h1>
             <p>Don't' have an account yet? <a asp-controller="Account" asp-action="SignUp">Sign up here</a>.</p>
 
@@ -22,18 +22,19 @@
 
                 <div id="form-email" class="input-group">
                     <label asp-for="Email"></label>
-                    <input asp-for="Email" />
+                    <input asp-for="Email" id="email" />
                 </div>
                 <div id="form-password" class="input-group">
                     <label asp-for="Password"></label>
-                    <input asp-for="Password" />
+                    <input asp-for="Password" id="password" />
                 </div>
 
                 <div id="form-remember" class="checkbox">
-                    <div class="checkbox-group">
-                        <input asp-for="RememberMe" />
-                        <label asp-for="RememberMe">Keep me signed in.</label>
-                    </div>
+                    <label class="checkbox-box">
+                        <input type="checkbox">
+                        <span class="min-checkmark"></span>
+                        <p>Keep me signed in.</p>
+                    </label>
                 </div>
                 <div class="btn-and-forgot-area">
                     <button id="form-submit" class="btn-theme-s mb-3" type="submit">Sign in</button>
@@ -46,3 +47,4 @@
 </section>
 
 
+<script src="/js/signinvalidator.js"></script>

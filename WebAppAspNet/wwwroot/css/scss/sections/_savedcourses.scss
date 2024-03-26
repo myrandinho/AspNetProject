@@ -80,15 +80,32 @@
 
 
                 .btn-nav {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
+                    color: $gray-800;
                     width: 40px;
                     height: 40px;
                     padding: 0;
+                    border-radius: 6px;
+
+                    i {
+                        color: $gray-600;
+
+                        @include lg {
+                            margin-left: 2rem;
+                            margin-right: 1rem;
+                        }
+                    }
 
                     @include lg {
                         width: 20rem;
-                    }
 
-                    @include shadow-m;
+                        &:hover {
+                            background-color: $gray-200;
+                        }
+                    }
                 }
 
 
@@ -116,20 +133,65 @@
                 }
 
                 #nav-security {
-                    @include lg {
+                    span {
                         display: none;
+
+                        @include lg {
+                            display: block;
+                        }
+                    }
+
+                    @include lg {
+                        justify-content: start;
+
+
+
+                        i {
+                            margin-left: 2rem;
+                            margin-right: 1rem;
+                        }
                     }
                 }
 
                 #nav-bookmark {
-                    @include lg {
+                    span {
                         display: none;
+
+                        @include lg {
+                            display: block;
+                        }
+                    }
+
+                    @include lg {
+                        justify-content: start;
+
+
+
+                        i {
+                            margin-left: 2rem;
+                            margin-right: 1rem;
+                        }
                     }
                 }
 
                 #nav-signout {
-                    @include lg {
+                    span {
                         display: none;
+
+                        @include lg {
+                            display: block;
+                        }
+                    }
+
+                    @include lg {
+                        justify-content: start;
+
+
+
+                        i {
+                            margin-left: 2rem;
+                            margin-right: 1rem;
+                        }
                     }
                 }
 
@@ -145,7 +207,7 @@
                     }
 
                     @include lg {
-                        display: block;
+                        display: none;
                         padding: 8px 0;
                         background-color: transparent;
                         border-radius: 6px;
@@ -196,7 +258,7 @@
                 display: grid;
                 grid-template-columns: auto;
                 grid-column-gap: 1.5rem;
-                
+
 
                 @include md {
                     grid-template-columns: auto auto;

@@ -6,14 +6,14 @@ public class SignInViewModel
 {
     [DataType(DataType.EmailAddress)]
     [Display(Name = "Email name", Prompt = "Your email")]
-    [Required(ErrorMessage = "A valid email adress is required")]
+    [Required]
     public string Email { get; set; } = null!;
 
 
 
     [DataType(DataType.Password)]
     [Display(Name = "Password", Prompt = "Your password")]
-    [Required(ErrorMessage = "A password is required")]
+    [Required]
     public string Password { get; set; } = null!;
 
 

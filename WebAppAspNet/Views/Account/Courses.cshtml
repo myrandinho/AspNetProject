@@ -1,4 +1,9 @@
-﻿
+﻿@model IEnumerable<CourseEntity>
+
+@{
+    ViewData["Title"] = "Courses";
+
+}
 
 
 
@@ -17,15 +22,37 @@
             </div>
         </div>
         <div class="courses">
-            <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
-            <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
-            <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
-            <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
-            <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
-            <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
-            <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
-            <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
-            <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
+            @foreach(var course in Model)
+            {
+                <a href="#" class="course">
+                    @if (course.IsBestseller)
+                    {
+                        <div class="best-seller">Bestseller</div>
+                    }
+                    <img src="~/Images/@course.ImageUrl" alt="" />
+                    <div class="course-content">
+                        <h5>@course.Title</h5>
+                        <p>By @course.Author</p>
+                        @if (course.DiscountPrice != null)
+                        {
+                            <div class="prices">
+                                <h5 class="discount-price">$@course.DiscountPrice</h5>
+                                <h5 class="old-price">$@course.Price</h5>
+                            </div>
+                        }
+                        else
+                        {
+                            <h5 class="price">$@course.Price</h5>
+                        }
+                        
+                        
+                        <div class="length-rating">
+                            <p class="length"><i class="fa-regular fa-clock"></i>@course.Hours hours</p>
+                            <p class="rating"><i class="fa-regular fa-thumbs-up"></i>@course.LikesInProcent% (@course.LikesInNumbers K)</p>
+                        </div>
+                    </div>
+                </a>
+            }
         </div>
 
 

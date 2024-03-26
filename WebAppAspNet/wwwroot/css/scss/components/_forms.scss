@@ -125,6 +125,76 @@
 form {
     width: 100%;
     display: grid;
+    ///TEST
+    .checkbox-box {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+
+
+        input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+
+
+            &:checked {
+                ~ {
+                    .min-checkmark {
+                        background-color: $theme;
+                        border: none;
+
+                        &:after {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+
+        .min-checkmark {
+            position: absolute;
+            top: 2px;
+            left: 0;
+            height: 18px;
+            width: 18px;
+            border-radius: 4px;
+            background-color: #ffffff;
+            border: 2px solid $gray-500;
+
+            &:after {
+                content: "";
+                position: absolute;
+                display: none;
+                left: 6px;
+                top: 3px;
+                width: 5px;
+                height: 10px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
+
+        p {
+
+            @include text-s;
+            color: $gray-700;
+        }
+    }
+    ///TEST
 
     textarea {
         padding: 0.5rem;
@@ -136,11 +206,8 @@ form {
 
 
     h1 {
-        
         font-weight: 700;
         color: #0B0F19;
-
-
     }
 
     p {
@@ -156,8 +223,28 @@ form {
         display: grid;
         margin: 0.8rem 0;
 
-        span {
+        input.error {
+            background-color: #f2a7b7;
+            opacity: 0.9
+        }
 
+        small {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 14px;
+            margin-top: 5px;
+            display: block;
+            color: #f91919;
+        }
+
+        .error {
+            color: red;
+            background-color: red;
+        }
+
+
+        span {
             &.field-validation-error {
                 position: absolute;
                 top: 0;
@@ -189,7 +276,6 @@ form {
         }
 
         span {
-
             &.field-validation-error {
                 display: block;
                 @include text-s;
@@ -210,9 +296,6 @@ form {
         border: 1px solid $gray-400;
         align-items: center;
 
-
-
-
         &::placeholder {
             opacity: 0.5;
             font-size: 16px;
@@ -222,6 +305,7 @@ form {
             border: 1px solid $danger !important;
             color: $danger;
             margin: 0;
+
 
 
             &::placeholder {

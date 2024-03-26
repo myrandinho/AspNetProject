@@ -14,6 +14,7 @@ public class AccountService
 
 
 
+
     public AccountService(AppDbContext context, UserManager<UserEntity> userManager)
     {
         _context = context;
@@ -22,10 +23,13 @@ public class AccountService
 
     //public async Task<bool> UpdateUserAsync(UserEntity user)
     //{
-        
+
 
     //    _userManager.Users.FirstOrDefaultAsync(x => user.Email == user.Email);
     //    return true;
     //}
 
+    
+
+   
 }

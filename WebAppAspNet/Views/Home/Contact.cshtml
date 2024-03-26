@@ -1,4 +1,4 @@
-﻿
+﻿@model ContactFormViewModel
 
 
 
@@ -34,31 +34,29 @@
         <div class="lower">
             <img src="~/Images/contact-map.svg" />
 
-            <form class="container">
+            <form class="container" method="post">
                 <h3>Get In Contact With Us</h3>
                 <div id="form-fullname" class="input-group">
-                    <label>Full name</label>
-                    <span></span>
-                    <input placeholder="Enter your full name"/>
+                    <label asp-for="FullName"></label>
+                    <input id="fullname" asp-for="FullName" />
                 </div>
                 <div id="form-email" class="input-group">
-                    <label>Email adress</label>
-                    <span></span>
-                    <input placeholder="Enter your email adress"/>
+                    <label asp-for="Email"></label>
+                    <input id="email"  asp-for="Email" />
                 </div>
                 <div class="service-dropdown input-group">
-                    <label>Service<span>(optional)</span></label>
-                    <span></span>
-                    <input placeholder="Choose the service you are interested in"/>
+                    <label asp-for="Service"></label>
+                    <input  id="service" asp-for="Service" />
                 </div>
                 <div id="form-message" class="input-group">
-                    <label>Message</label>
-                    <textarea placeholder="Enter your message here..."></textarea>
-                    <span></span>
+                    <label asp-for="Message"></label>
+                    <textarea id="message"  asp-for="Message"></textarea>
                 </div>
-                <button class="btn-theme">Send Contact Request</button>
+                <button type="submit" class="btn-theme">Send Contact Request</button>
             </form>
         </div>
     </div>
     
 </section>
+
+<script src="~/js/contactform-validation.js"></script>

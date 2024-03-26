@@ -1,0 +1,56 @@
+.switch {
+    z-index: 1;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 52rem;
+
+    .dark-left {
+        background-color: $gray-900;
+        height: 100%;
+    }
+
+    .light-right {
+        background-color: transparent;
+        height: 100%;
+    }
+
+
+
+    .topic-and-macbook {
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+
+
+        .text-position {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 4rem;
+            text-align: center;
+
+
+
+            .white-text {
+                color: #ffffff;
+                margin-right: 1rem;
+                margin-left: 1rem;
+            }
+
+            .dark-text {
+                color: black;
+                margin-left: 1rem;
+            }
+        }
+
+        img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+    }
+}

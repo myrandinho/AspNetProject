@@ -1,0 +1,86 @@
+.manage-work {
+    margin-top: 5rem;
+
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @include lg {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+
+            @include lg {
+                padding-right: 5rem;
+            }
+        }
+
+        .manage-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+
+
+
+
+            h2 {
+                @include h3;
+                margin-bottom: 1rem;
+
+                @include lg {
+                    @include h2;
+                }
+            }
+
+            .check-and-text {
+                display: flex;
+                margin-bottom: 0.35rem;
+                align-items: start;
+
+
+
+
+
+
+                .circle-border {
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 50%;
+                    border: 2px solid #6366F1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    i {
+                        color: #6366F1;
+                        font-size: 10px;
+                        margin: 2.5px 0 0 0;
+                        font-weight: bold;
+                    }
+                }
+
+                p {
+
+                    @include text-xs;
+                    margin: 0 0 0 5px;
+
+                    @include lg {
+                        @include text-m;
+                    }
+                }
+            }
+
+            .btn-theme-s {
+                margin-top: 1rem;
+                width: 20rem;
+            }
+        }
+    }
+}

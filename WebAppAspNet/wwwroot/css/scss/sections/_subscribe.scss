@@ -1,0 +1,151 @@
+.subscribe {
+    background-color: #F3F6FF;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+
+    .container {
+
+        .content {
+
+            @include lg {
+                padding-left: 20%;
+                padding-right: 20%;
+            }
+
+            .headline-and-image {
+                display: flex;
+                justify-content: center;
+
+                @include md {
+                    justify-content: start;
+                }
+
+                h2 {
+                    font-weight: 800;
+                }
+
+                img {
+                    padding-right: 10%;
+
+                    @include md {
+                        margin-left: 2rem;
+                    }
+                }
+            }
+
+            .checkbox-section {
+
+
+
+                h6 {
+                    font-weight: 800;
+                }
+                ///
+                .checkbox-area {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    margin-top: 2rem;
+
+                    @include md {
+                        grid-template-columns: auto auto auto;
+                    }
+
+                    .checkbox-box {
+                        display: block;
+                        position: relative;
+                        padding-left: 35px;
+                        margin-bottom: 12px;
+                        cursor: pointer;
+                        font-size: 22px;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+
+
+
+                        input {
+                            position: absolute;
+                            opacity: 0;
+                            cursor: pointer;
+                            height: 0;
+                            width: 0;
+
+
+                            &:checked {
+                                ~ {
+                                    .min-checkmark {
+                                        background-color: $theme;
+                                        border: none;
+
+                                        &:after {
+                                            display: block;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .min-checkmark {
+                            position: absolute;
+                            top: 2px;
+                            left: 0;
+                            height: 18px;
+                            width: 18px;
+                            border-radius: 4px;
+                            background-color: #ffffff;
+                            border: 2px solid $gray-500;
+
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                display: none;
+                                left: 6px;
+                                top: 3px;
+                                width: 5px;
+                                height: 10px;
+                                border: solid white;
+                                border-width: 0 3px 3px 0;
+                                -webkit-transform: rotate(45deg);
+                                -ms-transform: rotate(45deg);
+                                transform: rotate(45deg);
+                            }
+                        }
+
+                        p {
+
+                            @include text-s;
+                            color: $gray-700;
+                        }
+                    }
+                }
+            }
+            ///
+            .input-and-sub-btn {
+
+
+                @include md {
+                    display: flex;
+                }
+
+                input {
+                    width: 100%;
+                    margin-bottom: 1rem;
+
+                    @include md {
+                        margin-right: 1rem;
+                        margin-bottom: 0rem;
+                    }
+                }
+
+                .btn-theme-s {
+                    padding: 0 28px;
+                    height: 56px;
+                }
+            }
+
+            p {
+            }
+        }
+    }
+}
