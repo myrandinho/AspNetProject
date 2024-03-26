@@ -29,7 +29,7 @@ public class HomeController : Controller
         return View();
     }
 
-    [Route("/testing")]
+    //[Route("/testing")]
     [HttpGet]
     public IActionResult Subscribe()
     {
@@ -37,7 +37,7 @@ public class HomeController : Controller
         return View(new SuberscribeViewModel());
     }
 
-    [Route("/testing")]
+    //[Route("/testing")]
     [HttpPost]
     public async Task<IActionResult> Subscribe(SuberscribeViewModel viewModel)
     {
