@@ -5,7 +5,7 @@
 
 
         .upper {
-            background-color: #F3F6FF;
+            background-color: var(--color-gray-100);
 
             @include md {
                 height: 30%;
@@ -23,7 +23,7 @@
 
 
                 p {
-                    color: $gray-600;
+                    color: var(--color-gray-600) !important;
 
                     @include text-s;
 
@@ -43,6 +43,7 @@
                 }
 
                 h1 {
+                    color: var(--color-gray-900);
                     font-weight: 800;
                     margin-bottom: 2rem;
                 }
@@ -62,7 +63,7 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        background-color: #ffffff;
+                        background-color: var(--color-gray-000);
                         margin-right: 2rem;
 
                         i {
@@ -75,11 +76,13 @@
 
 
                         h3 {
+                            color: var(--color-gray-900) !important;
                             font-weight: 800;
                         }
 
                         p {
-                            
+                            color: var(--color-gray-700) !important;
+
                             @include md {
                                 padding-right: 50%;
                             }
@@ -112,7 +115,11 @@
             }
 
             form {
-                background-color: #ffffff;
+                background-color: var(--color-gray-000) !important;
+
+                h3 {
+                    color: var(--color-gray-900) !important;
+                }
 
                 @include md {
                     width: 40%;
@@ -148,7 +155,7 @@
 
                 .btn-theme {
                     @include lg {
-                       width: 237px;
+                        width: 237px;
                     }
                 }
             }

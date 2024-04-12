@@ -1,21 +1,16 @@
 ﻿@model AccountDetailsViewModel
 
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+
 
 
 
 <section class="saved-courses">
     <div class="container">
         <aside>
-            <div class="profile">
-                <div class="profile-image">
-                    <img src="~/Images/@Model.ProfileInfo.ProfileImageUrl" alt="" />
-                    <a class="btn-white-circle" href="#"><i class="fa-regular fa-refresh"></i></a>
-                </div>
-                <div class="profile-info">
-                    <h3>@Model.ProfileInfo.FirstName @Model.ProfileInfo.LastName</h3>
-                    <p>@Model.ProfileInfo.Email</p>
-                </div>
-            </div>
+            <Partial name="~/Views/Shared/Partials/_ProfileInfo.cshtml" />
             <nav>
                 <a id="nav-settings" class="btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i><span>Account Details</span></a>
                 <a id="nav-security" class="btn-nav " asp-action="Security" asp-controller="Account"><i class="fa-regular fa-lock"></i><span>Security</span></a>
@@ -36,3 +31,5 @@
         </div>
     </div>
 </section>
+
+<script src="/js/upload.js"></script>

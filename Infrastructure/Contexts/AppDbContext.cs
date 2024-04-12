@@ -11,6 +11,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<AdressEntity> Adresses { get; set; }
     public DbSet<CourseEntity> Courses { get; set; }
     public DbSet<SubscriberEntity> Subscribers { get; set; }
+    public DbSet<CategoryEntity> Categories { get; set; }
 
     //protected override void OnModelCreating(ModelBuilder builder)
     //{

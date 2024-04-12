@@ -4,8 +4,6 @@
 }
 
 
-
-
 <!DOCTYPE html>
 <html lang="en" class="@themeMode" >
 <head>
@@ -31,7 +29,10 @@
             @RenderBody()
         </main>
         <Partial name="~/Views/Shared/Partials/_Footer.cshtml" />
+        <partial name="_CookieConsent" />
     </div>
+
+    
 
 
     <script src="~/js/site.js" asp-append-version="true"></script>

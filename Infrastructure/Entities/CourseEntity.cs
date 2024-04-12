@@ -18,4 +18,9 @@ public class CourseEntity
     public string? Author { get; set; }
 
     public string? ImageUrl { get; set; }
+    public DateTime Created { get; set; }
+    public DateTime LastUpdated { get; set; }
+
+    public int? CategoryId { get; set; }
+    public CategoryEntity? Category { get; set; }
 }

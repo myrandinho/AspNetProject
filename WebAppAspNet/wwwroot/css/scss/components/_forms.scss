@@ -1,128 +1,8 @@
-/*form {
-    width: 100%;
-    display: grid;
-    gap: 1rem;
 
-    .checkbox {
-        span {
-            display: block;
-
-            &.field-validation-error {*/
-/*                position: absolute;
-                top: 0;
-                right: 0;*/
-                /*@include text-s;
-                color: $danger;
-            }
-        }
-    }
-
-    .input-group {
-        margin: 1rem 0;
-        display: grid;
-
-        span {
-
-            &.field-validation-error {
-                position: absolute;
-                top: 0;
-                right: 0;
-                @include text-s;
-                color: $danger;
-            }
-        }
-    }
-
-
-
-    .checkbox-group {
-        margin: 1rem 0;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 1rem;
-
-        input [type="checkbox"] {
-            height: 1.2rem;
-            width: 1.2rem;
-
-            label {
-                margin: 0;
-                font-weight: 400;
-            }
-        }
-    }
-
-    label {
-        margin-bottom: 3px;
-        font-weight: 700;
-    }
-
-    input {
-        padding: 1rem;
-        border-radius: 8px !important;
-        border: 1px solid $gray-400;
-
-        &::placeholder {
-            opacity: 0.5;
-        }
-
-        &.input-validation-error {
-            border: 1px solid $danger !important;
-            color: $danger;
-
-            &::placeholder {
-                color: $danger;
-            }
-        }
-    }
-}*/
-
-
-/*form {
-    width: 100%;
-    display: grid;
-    
-
-    .input-group {
-        display: grid;
-    }
-
-    .checkbox-group {
-
-        input[type = checkbox] {
-            margin-right: 10px;
-        }
-
-        .input-group {
-            display: flex;
-            align-items: center;
-        }
-    }
-
-
-
-    input {
-        font-size: 16px;
-        padding: 16px;
-        border-radius: 8px;
-        border: 1px solid #808080;
-
-        &::placeholder {
-            opacity: 0.5;
-        }
-    }
-
-    input[type=checkbox] {
-        height: 20px;
-        width: 20px;
-        margin: 0;
-        
-    }
-}*/
 
 
 form {
+    background-color: var(--color-gray-000) !important;
     width: 100%;
     display: grid;
     ///TEST
@@ -151,7 +31,7 @@ form {
             &:checked {
                 ~ {
                     .min-checkmark {
-                        background-color: $theme;
+                        background-color: $theme !important;
                         border: none;
 
                         &:after {
@@ -169,7 +49,7 @@ form {
             height: 18px;
             width: 18px;
             border-radius: 4px;
-            background-color: #ffffff;
+            background-color: var(--color-gray-100) !important;
             border: 2px solid $gray-500;
 
             &:after {
@@ -191,15 +71,23 @@ form {
         p {
 
             @include text-s;
-            color: $gray-700;
+            color: var(--color-gray-700) !important;
         }
     }
     ///TEST
 
     textarea {
+        background-color: var(--color-gray-000) !important;
         padding: 0.5rem;
         border-radius: 8px !important;
-        border: 1px solid $gray-400;
+        border: 1px solid var(--color-gray-400);
+        color: var(--color-gray-900);
+
+        &::placeholder {
+            opacity: 0.5;
+            font-size: 16px;
+            color: var(--color-gray-500) !important;
+        }
     }
 
 
@@ -245,6 +133,8 @@ form {
 
 
         span {
+
+
             &.field-validation-error {
                 position: absolute;
                 top: 0;
@@ -288,17 +178,21 @@ form {
         margin-bottom: 3px;
         font-size: 16px;
         font-weight: 600;
+        color: var(--color-gray-900) !important;
     }
 
     input {
         padding: 0.5rem;
         border-radius: 8px !important;
-        border: 1px solid $gray-400;
+        border: 1px solid var(--color-gray-400);
         align-items: center;
+        background-color: var(--color-gray-000);
+        color: var(--color-gray-900);
 
         &::placeholder {
             opacity: 0.5;
             font-size: 16px;
+            color: var(--color-gray-500) !important;
         }
 
         &.input-validation-error {

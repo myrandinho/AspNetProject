@@ -18,6 +18,9 @@ public class Course
     public string? LikesInNumbers { get; set; }
     public string? LikesInProcent { get; set; }
     public string? Author { get; set; }
+    public string? ImageUrl { get; set; }
+    public string Category { get; set; } = null!; //nyligen tillagd.
+
 
     public static implicit operator Course(CourseEntity courseEntity)
     {
@@ -31,7 +34,10 @@ public class Course
             IsBestseller = courseEntity.IsBestseller,
             LikesInNumbers = courseEntity.LikesInNumbers,
             LikesInProcent = courseEntity.LikesInProcent,
-            Author = courseEntity.Author
+            Author = courseEntity.Author,
+            ImageUrl = courseEntity.ImageUrl,
+            Category = courseEntity.Category.CategoryName
+
         };
     }
 }

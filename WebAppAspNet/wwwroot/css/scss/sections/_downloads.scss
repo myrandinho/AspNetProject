@@ -1,8 +1,8 @@
 .download {
-    background-color: #F3F6FF;
+    background-color: var(--color-gray-100);
 
     .container {
-        background-color: #EFF2FC;
+        background-color: var(--color-gray-200);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -34,6 +34,8 @@
 
 
             h2 {
+                color: var(--color-gray-900) !important;
+
                 @include h4;
 
                 @include lg {
@@ -73,7 +75,7 @@
 
                         .txt1 {
                             margin: 0 0 0 0;
-                            color: #9397AD;
+                            color: var(--color-gray-600);
                         }
 
                         .stars {
@@ -86,11 +88,13 @@
 
                         h6 {
                             display: block;
+                            color: var(--color-gray-900) !important;
+                            font-weight: 700;
                         }
 
                         .txt2 {
                             margin: 0 0 0 0;
-                            color: #565973;
+                            color: var(--color-gray-700);
                         }
                     }
 

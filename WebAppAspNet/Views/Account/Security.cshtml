@@ -1,20 +1,14 @@
 ﻿@inject UserManager<UserEntity> userManager;
  @model AccountDetailsViewModel
+ @{
+    var user = await UserManager.GetUserAsync(User);
+ }
 
 <section class="security">
     <div class="container">
         <aside>
            
-            <div class="profile">
-                <div class="profile-image">
-                    <img src="~/Images/@Model.ProfileInfo.ProfileImageUrl" alt="" />
-                    <a class="btn-white-circle" href="#"><i class="fa-regular fa-refresh"></i></a>
-                </div>
-                <div class="profile-info">
-                    <h3>@Model.ProfileInfo.FirstName @Model.ProfileInfo.LastName</h3>
-                    <p>@Model.ProfileInfo.Email</p>
-                </div>
-            </div>
+            <Partial name="~/Views/Shared/Partials/_ProfileInfo.cshtml" />
             <nav>
                 <a id="nav-settings" class="btn-nav" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i><span>Account Details</span></a>
                 <a id="nav-security" class="btn-nav active" asp-action="Security" asp-controller="Account"><i class="fa-regular fa-lock"></i><span>Security</span></a>
@@ -26,26 +20,27 @@
         <div class="security-content">
             <h2>Security</h2>
             <h5>Password</h5>
-            <form method="post">
-               
+            <form onsubmit="return validatePasswordFormAsdf(event)" asp-controller="Account" asp-action="NewPassword" method="post" novalidate>
+                
                 <div id="form-current-password" class="input-group">
                     <label asp-for="@Model.SecurityForm.CurrentPassword"></label>
-                    <input id="current-pw" asp-for="@Model.SecurityForm.CurrentPassword" />
+                    <input class="required-field-pw" id="current-pw" asp-for="@Model.SecurityForm.CurrentPassword" />
                     
                 </div>
                 <div id="form-new-password" class="input-group">
                     <label asp-for="@Model.SecurityForm.NewPassword"></label>
-                    <input id="new-pw" asp-for="@Model.SecurityForm.NewPassword" />
+                    <input class="required-field-pw" id="new-pw" asp-for="@Model.SecurityForm.NewPassword" />
                 </div>
                 <div id="form-confirm-new-password" class="input-group">
                     <label asp-for="@Model.SecurityForm.ConfirmedPassword"></label>
-                    <input id="confirmed-pw" asp-for="@Model.SecurityForm.ConfirmedPassword" />
+                    <input class="required-field-pw" id="confirmed-pw" asp-for="@Model.SecurityForm.ConfirmedPassword" />
                 </div>
                 <div class="forms-btns">
                     <button class="btn-gray">Cancel</button>
                     <button type="submit" class="btn-theme">Change password</button>
                 </div>
             </form>
+            
 
             
                 
@@ -55,9 +50,9 @@
                 <label class="checkbox-box">
                     <input id="deleting-user"  asp-for="DeleteUser.deleteConfirmation"  type="checkbox">
                     <span class="min-checkmark"></span>
-                    <p>Yes, want to delete my account.</p>
+                    <p class="text-with-validation" >Yes, want to delete my account.</p>
                 </label>
-                <button class="delete-btn" type="submit" onclick="Validate()" >Delete</button>
+                <button class="delete-btn" type="submit" >Delete</button>
             </form>
 
 
@@ -65,11 +60,8 @@
 
         </div>
     </div>
-    
-
-    
 </section>
 
-<script src="~/js/newpassword-validator.js"></script>
-@* <script src="~/js/deleteconfirmation.js"></script> *@
-<script src="~/js/validation.js"></script>
+<script src="~/js/update-password.js"></script>
+<script src="/js/upload.js"></script>
+<script src="/js/delete-validator.js"></script>

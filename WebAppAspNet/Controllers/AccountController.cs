@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Entities;
+using Infrastructure.Models;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -8,23 +9,25 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.Json;
 using Microsoft.Identity.Client;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using System.Text;
 using WebAppAspNet.ViewModels;
 using WebAppAspNet.ViewModels.Account;
 
 namespace WebAppAspNet.Controllers;
 
-public class AccountController : Controller
+public class AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, AdressService adressService, HttpClient http, IConfiguration configuration, AccountService accountService, CategoryService categoryService, CourseService courseService) : Controller
 {
-    private readonly UserManager<UserEntity> _userManager;
-    private readonly SignInManager<UserEntity> _signInManager;
-    private readonly AdressService _adressService;
+    private readonly UserManager<UserEntity> _userManager = userManager;
+    private readonly SignInManager<UserEntity> _signInManager = signInManager;
+    private readonly AdressService _adressService = adressService;
+    private readonly HttpClient _http = http;
+    private readonly IConfiguration _configuration = configuration;
+    private readonly AccountService _accountService = accountService;
+    private readonly CategoryService _categoryService = categoryService;
+    private readonly CourseService _courseService = courseService;
 
-    public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, AdressService adressService)
-    {
-        _userManager = userManager;
-        _signInManager = signInManager;
-        _adressService = adressService;
-    }
+
 
 
     [HttpGet]
@@ -59,7 +62,7 @@ public class AccountController : Controller
                 UserName = viewModel.Email
             };
 
-            var result = await _userManager.CreateAsync(userEntity,viewModel.Password);
+            var result = await _userManager.CreateAsync(userEntity, viewModel.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("SignIn", "Account");
@@ -82,7 +85,7 @@ public class AccountController : Controller
 
     }
 
-
+    //skapar en acesstoken vid inlogging.
     [HttpPost]
     [Route("/signin")]
     public async Task<IActionResult> SignIn(SignInViewModel viewModel, string returnUrl)
@@ -92,8 +95,37 @@ public class AccountController : Controller
             var result = await _signInManager.PasswordSignInAsync(viewModel.Email, viewModel.Password, viewModel.RememberMe, false);
             if (result.Succeeded)
             {
-                if(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
+                    var content = new StringContent(JsonConvert.SerializeObject(viewModel), Encoding.UTF8, "application/json");
+                    var response = await _http.PostAsync($"https://localhost:7127/api/Auth/token?key={_configuration["ApiKey"]}", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var token = await response.Content.ReadAsStringAsync();
+                        var cookieOptions = new CookieOptions
+                        {
+                            HttpOnly = true,
+                            Secure = true,
+                            Expires = DateTime.Now.AddDays(1)
+                        };
+
+                        Response.Cookies.Append("AccessToken", token, cookieOptions);
+                    }
+
                     return Redirect(returnUrl);
+                }
+
+
+                    
+
+
+
+                //var login = new Dictionary<string, string>()
+                //{
+                //    { "email", viewModel.Email }, { "password", viewModel.Password }
+                //};
+
+               
 
 
                 return RedirectToAction("Details", "Account");
@@ -110,6 +142,7 @@ public class AccountController : Controller
     [Route("/signout")]
     public new async Task<IActionResult> SignOut()
     {
+        Response.Cookies.Delete("AccessToken"); //raderar token-cookien
         await _signInManager.SignOutAsync();
         return RedirectToAction("Index", "Home");
     }
@@ -136,7 +169,7 @@ public class AccountController : Controller
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                
+
 
                 foreach (var error in result.Errors)
                 {
@@ -145,34 +178,131 @@ public class AccountController : Controller
                 return RedirectToAction("Index", "Home");
             }
 
-            
+
         }
-        
+
         return View();
     }
 
 
 
-    [Authorize]
-    [HttpGet]
-    [Route("/courses")]
-    public async Task<IActionResult> Courses()
-    {
-        using var http = new HttpClient();
-        var response = await http.GetAsync("https://localhost:7127/api/courses");
-        var json = await response.Content.ReadAsStringAsync();
-        var data = JsonConvert.DeserializeObject<IEnumerable<CourseEntity>>(json);
+    //[Authorize]
+    //[HttpGet]
+    //[Route("/courses")]
+    //public async Task<IActionResult> Courses()
+    //{
 
-        return View(data);
+    //    if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
+    //    {
+
+    //        _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token); //Om accesstoken finns. Körs authentisering.
+
+    //        var response = await _http.GetAsync($"https://localhost:7127/api/Courses?key={_configuration["ApiKey"]}");
+    //        if (response.IsSuccessStatusCode)
+    //        {
+
+    //            var courses = JsonConvert.DeserializeObject<IEnumerable<Course>>(await response.Content.ReadAsStringAsync());
+    //            return View(courses);
+    //        }
+    //    }
+
+    //    return View();
+    //}
+
+
+
+
+
+
+
+
+
+    [Route("/courses")]
+    [HttpGet]
+    public async Task<IActionResult> Courses(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 3)
+    {
+
+        var courseResult = await _courseService.GetCoursesAsync(category, searchQuery, pageNumber, pageSize);
+
+        var viewModel = new CourseIndexViewModel
+        {
+            Categories = await _categoryService.GetCategoriesAsync(),
+            Courses = courseResult.Courses,
+            Pagination = new Pagination
+            {
+                PageSize = pageSize,
+                CurrentPage = pageNumber,
+                TotalPages = courseResult.TotalPages,
+                TotalItems = courseResult.TotalItems
+            }
+        };
+
+        return View(viewModel);
     }
+
+
+
+
+
+
+
+
+
+
+
 
     [Authorize]
     [HttpGet]
     [Route("/courses/singlecourse")]
-    public IActionResult SingleCourse()
+    public async Task<IActionResult> SingleCourse(int id)
     {
+
+        if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
+        {
+
+            _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token); //Om accesstoken finns. Körs authentisering.
+
+            var response = await _http.GetAsync($"https://localhost:7127/api/Courses/{id}?key={_configuration["ApiKey"]}");
+            if (response.IsSuccessStatusCode)
+            {
+
+                var course = JsonConvert.DeserializeObject<Course>(await response.Content.ReadAsStringAsync());
+                return View(course);
+            }
+        }
+
         return View();
     }
+
+
+    //[HttpPost]
+    //public async Task<IActionResult> Join(int id)
+    //{
+    //    if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
+    //    {
+
+    //        _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token); //Om accesstoken finns. Körs authentisering.
+
+    //        var response = await _http.GetAsync($"https://localhost:7127/api/Courses/{id}?key={_configuration["ApiKey"]}");
+    //        if (response.IsSuccessStatusCode)
+    //        {
+
+    //            var course = JsonConvert.DeserializeObject<Course>(await response.Content.ReadAsStringAsync());
+
+    //            var result = await _accountService.SaveCourseToUser(course, userId);
+    //        }
+    //    }
+
+    //    return View();
+    //}
+
+    //[Authorize]
+    //[HttpGet]
+    //[Route("/courses/singlecourse")]
+    //public IActionResult SingleCourse()
+    //{
+    //    return View();
+    //}
 
 
 
@@ -216,14 +346,14 @@ public class AccountController : Controller
 
     [HttpPost]
     [Route("/account/security")]
-    public async Task<IActionResult> Security(AccountDetailsViewModel viewModel)
+    public async Task<IActionResult> NewPassword(AccountDetailsViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return View("error404");
+                return View(viewModel);
             }
 
             var result = await _userManager.ChangePasswordAsync(user, viewModel.SecurityForm.CurrentPassword, viewModel.SecurityForm.NewPassword);
@@ -244,11 +374,12 @@ public class AccountController : Controller
         }
 
 
-        return View(viewModel);
+        return RedirectToAction("Security", "Account", viewModel);
+
     }
 
 
-    
+
 
 
     [Authorize]
@@ -291,6 +422,7 @@ public class AccountController : Controller
                     user.Email = viewModel.BasicInfoForm.Email;
                     user.PhoneNumber = viewModel.BasicInfoForm.PhoneNumber;
                     user.Bio = viewModel.BasicInfoForm.Biography;
+                    user.UserName = viewModel.BasicInfoForm.Email;
 
                     var result = await _userManager.UpdateAsync(user);
                     if (!result.Succeeded)
@@ -307,7 +439,7 @@ public class AccountController : Controller
         if (viewModel.AdressInfoForm != null)
         {
 
-            if (viewModel.AdressInfoForm.AdressLine_1 != null && viewModel.AdressInfoForm.AdressLine_2 != null && viewModel.AdressInfoForm.PostalCode != null && viewModel.AdressInfoForm.City != null)
+            if (viewModel.AdressInfoForm.AdressLine_1 != null &&  viewModel.AdressInfoForm.PostalCode != null && viewModel.AdressInfoForm.City != null)
             {
                 var user = await _userManager.GetUserAsync(User);
                 if (user != null)
@@ -362,6 +494,27 @@ public class AccountController : Controller
 
 
 
+    [Route("/account/detailstest")]
+    public IActionResult DetailsTest()
+    {
+        return View();
+    }
+
+
+
+
+    [Authorize]
+    [HttpPost]
+    public async Task<IActionResult> UploadImage(IFormFile file)
+    {
+
+        var result = await _accountService.UploadUserProfileImageAsync(User, file);
+        return RedirectToAction("Details", "Account");
+    }
+
+
+
+
 
 
 
@@ -374,10 +527,11 @@ public class AccountController : Controller
 
         return new ProfileInfoViewModel
         {
-            
+
             FirstName = user!.FirstName,
             LastName = user.LastName,
             Email = user.Email!,
+            IsExternalAccount = user.IsExternalAccount,
 
 
         };
@@ -402,13 +556,13 @@ public class AccountController : Controller
 
     private async Task<AdressInfoFormViewModel> PopulateAdressInfoAsync()
     {
-            var user = await _userManager.GetUserAsync(User);
-            if (user != null)
-            {
-                var adress = await _adressService.GetAdressAsync(user.Id);
+        var user = await _userManager.GetUserAsync(User);
+        if (user != null)
+        {
+            var adress = await _adressService.GetAdressAsync(user.Id);
 
-                if (adress != null)
-                {
+            if (adress != null)
+            {
                 return new AdressInfoFormViewModel
                 {
                     AdressLine_1 = adress.AdressLine_1,
@@ -417,12 +571,12 @@ public class AccountController : Controller
                     City = adress.City,
                 };
             }
-               
-            }
-            
 
-            return new AdressInfoFormViewModel();
-        
+        }
+
+
+        return new AdressInfoFormViewModel();
+
     }
 
 

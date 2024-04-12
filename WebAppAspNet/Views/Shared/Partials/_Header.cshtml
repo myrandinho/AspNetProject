@@ -4,13 +4,15 @@
     var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
     var isDark = (themeMode == "dark") ? true : false;
 }
-
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
 
 
 <header>
     <div class="container">
 
-        <a asp-controller="Home" asp-action="Index" class="logo"><img src="~/Images/silikon-logo.svg"></a>
+        <a asp-controller="Home" asp-action="Index" class="logo"><img src="~/Images/@(isDark ? "logo-dark.svg" : "silikon-logo.svg")"></a>
 
         <div class="menu">
             <nav>
@@ -36,7 +38,12 @@
         <div class="account-buttons">
             @if (_signInManager.IsSignedIn(User))
             {
-                <a asp-controller="Account" asp-action="Details" class="btn-theme"><i class="fa-regular fa-user"></i><span>My account</span></a>
+                <div class="profile-signed-in">
+                    <div class="prfl-image">
+                        <a asp-action="Details" asp-controller="Account"><img src="~/uploads/@user!.ProfileImage" alt="profile image" /></a>
+                    </div>
+                </div>
+                @* <a asp-controller="Account" asp-action="Details" class="btn-theme"><i class="fa-regular fa-user"></i><span>My account</span></a> *@
                 <a asp-controller="Account" asp-action="SignOut" class="btn-gray"><i class="fa-solid fa-arrow-right-to-bracket"></i><span>Sign out</span></a>
             }
             else

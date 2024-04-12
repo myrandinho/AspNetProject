@@ -11,4 +11,6 @@ public class ProfileInfoViewModel
 
     public string Email { get; set; } = null!;
     public string ProfileImageUrl { get; set; } = "profile-image.svg";
+
+    public bool IsExternalAccount { get; set; }
 }

@@ -33,9 +33,24 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
+builder.Services.AddHttpClient();
 
+builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<AdressService>();
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<CourseService>();
 builder.Services.AddScoped<UserManager<UserEntity>>();
+
+
+
+
+builder.Services.AddAuthentication().AddFacebook(x =>
+{
+    x.AppId = "1377132983001372";
+    x.AppSecret = "0f9bc2a49df805a4cdb41e0afb798f63";
+    x.Fields.Add("first_name");
+    x.Fields.Add("last_name");
+});
 
 
 var app = builder.Build();

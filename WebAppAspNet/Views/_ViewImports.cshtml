@@ -1,8 +1,14 @@
 ﻿
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Infrastructure.Services
 @using WebAppAspNet.ViewModels
 @using Infrastructure.Helpers
 @using Microsoft.AspNetCore.Identity
 @using Infrastructure.Entities
 @using WebAppAspNet.ViewModels.Account
 @using Infrastructure.Models
+@using Microsoft.AspNetCore.Http;
+@inject UserManager<UserEntity> UserManager
+@inject SignInManager<UserEntity> SignInManager
+@inject IConfiguration Configuration
+@inject AccountService AccountService

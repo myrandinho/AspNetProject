@@ -1,0 +1,61 @@
+﻿@{
+    var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
+
+}
+
+
+<!DOCTYPE html>
+<html lang="en" class="@themeMode">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://kit.fontawesome.com/41c8b474e2.js" crossirigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/site.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    @if (!string.IsNullOrWhiteSpace(ViewData["Title"]?.ToString()))
+    {
+        <title>@ViewData["Title"] - Silicon</title>
+    }
+    else
+    {
+        <title>Silicon</title>
+    }
+
+</head>
+<body>
+    <div class="wrapper">
+        <Partial name="~/Views/Shared/Partials/_Header.cshtml" />
+
+
+        <section class="account-details">
+            <div class="container">
+                
+
+                <aside>
+                    <partial name="~/Views/Shared/Partials/_ProfileInfo.cshtml" />
+                    <nav>
+                        <a id="nav-settings" class="btn-nav active" asp-action="Details" asp-controller="Account"><i class="fa-regular fa-gear"></i><span>Account Details</span></a>
+                        <a id="nav-security" class="btn-nav" asp-action="Security" asp-controller="Account"><i class="fa-regular fa-lock"></i><span>Security</span></a>
+                        <a id="nav-bookmark" class="btn-nav" asp-action="SavedCourses" asp-controller="Account"><i class="fa-regular fa-bookmark"></i><span>Saved Courses</span></a>
+                        <a id="nav-signout" class="btn-nav" asp-action="SignOut" asp-controller="Account"><i class="fa-regular fa-arrow-right-from-bracket"></i><span>Sign Out</span></a>
+                    </nav>
+                </aside>
+
+            </div>
+        </section>
+
+        <main>
+            @RenderBody()
+        </main>
+        <Partial name="~/Views/Shared/Partials/_Footer.cshtml" />
+        <partial name="_CookieConsent" />
+    </div>
+
+
+
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> *@
+</body>
+</html>
+

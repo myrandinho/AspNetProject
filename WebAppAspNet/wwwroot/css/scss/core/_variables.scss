@@ -1,4 +1,6 @@
 :root {
+
+    --color-gray-000: #FFFFFF;
     --color-gray-100: #F3F6FF;
     --color-gray-200: #EFF2FC;
     --color-gray-300: #E2E5F1;
@@ -8,16 +10,19 @@
     --color-gray-700: #565973;
     --color-gray-800: #33354D;
     --color-gray-900: #0B0F19;
+
+    
 }
 
 :root.dark {
-    --color-gray-100: #0B0F19;
-    --color-gray-200: #33354D;
-    --color-gray-300: #565973;
-    --color-gray-400: #9397AD;
-    --color-gray-500: #B4B7C9;
-    --color-gray-600: #D4D7E5;
-    --color-gray-700: #E2E5F1;
-    --color-gray-800: #EFF2FC;
-    --color-gray-900: #F3F6FF;
+    --color-gray-000: #0B0F19;
+    --color-gray-100: #33354D;
+    --color-gray-200: #565973;
+    --color-gray-300: #9397AD;
+    --color-gray-400: #B4B7C9;
+    --color-gray-500: #D4D7E5;
+    --color-gray-600: #E2E5F1;
+    --color-gray-700: #EFF2FC;
+    --color-gray-800: #F3F6FF;
+    --color-gray-900: #FFFFFF;
 }

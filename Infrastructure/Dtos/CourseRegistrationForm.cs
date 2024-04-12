@@ -1,5 +1,7 @@
 ﻿
 
+using Infrastructure.Entities;
+using Infrastructure.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace Infrastructure.Dtos;
@@ -15,4 +17,6 @@ public class CourseRegistrationForm
     public string? LikesInNumbers { get; set; }
     public string? LikesInProcent { get; set; }
     public string? Author { get; set; }
+    public string? ImageUrl { get; set; }
+    public CategoryEntity Category { get; set; }
 }

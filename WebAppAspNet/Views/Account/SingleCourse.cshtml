@@ -1,4 +1,4 @@
-﻿
+﻿@model Course
 
 
 
@@ -6,23 +6,28 @@
     <div class="top-area">
         <div class="top-area-content container">
             <div class="testarlite">
-                <p class="nav-pages"><i class="fa-regular fa-house"></i>Home<i class="fa-solid fa-angles-right"></i><span>Courses</span><i class="fa-solid fa-angles-right"></i><span>Fullstack Web Developer Course from Scratch</span></p>
+                <p class="nav-pages"><i class="fa-regular fa-house"></i>Home<i class="fa-solid fa-angles-right"></i><span>Courses</span><i class="fa-solid fa-angles-right"></i><span>@Model.Title</span></p>
                 <div class="bars">
-                    <div class="best-seller">Best Seller</div>
+                    @if (Model.IsBestseller)
+                    {
+                        <div class="best-seller">Best Seller</div>
+                        
+                    }
+                    
                     <div class="digital">Digital</div>
                 </div>
-                <h2>Fullstack Web Developer Course from Scratch</h2>
+                <h2>@Model.Title</h2>
                 <p class="text-description">Egestas feugiat lorem eu neque suspendisse ullamcorper scelerisque aliquam mauris.</p>
                 <div class="review-likes-length">
-                    <p class="reviews"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (1.2k reviews)</p>
-                    <p class="likes"><i class="fa-regular fa-thumbs-up"></i>5K likes</p>
-                    <p class="course-length"><i class="fa-regular fa-clock"></i>148 hours</p>
+                    <p class="reviews"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> (@Model.LikesInNumbers k reviews)</p>
+                    <p class="likes"><i class="fa-regular fa-thumbs-up"></i>@Model.LikesInNumbers K likes</p>
+                    <p class="course-length"><i class="fa-regular fa-clock"></i>@Model.Hours hours</p>
                 </div>
                 <div class="creator">
-                    <img class="content-creator " src="/Images/albert-flores.svg" alt="" />
+                    <img class="content-creator" src="/Images/albert-flores.svg" alt="" />
                     <div class="created-by">
                         <p class="created">Created-by</p>
-                        <p class="signature">Albert Flores</p>
+                        <p class="signature">@Model.Author</p>
                     </div>
                 </div>
             </div>
@@ -60,7 +65,7 @@
                 <h4>This course includes:</h4>
                 <div class="course-includes">
                     <i class="fa-regular fa-tv-retro"></i>
-                    <p>148 hours on-demand video</p>
+                    <p>@Model.Hours hours on-demand video</p>
                 </div>
                 <div class="course-includes">
                     <i class="fa-regular fa-file-lines"></i>
@@ -79,8 +84,16 @@
                     <p>Certificate of completion</p>
                 </div>
                 <div class="prices">
-                    <h3>$28.99</h3>
-                    <h5>$49.00</h5>
+                    @if (Model.DiscountPrice != null)
+                    {
+                        <h3>$@Model.DiscountPrice</h3>
+                        <h5>$@Model.Price</h5>
+                    }
+                    else
+                    {
+                        <h5 class="no-discountprice">$@Model.Price</h5>
+                    }
+                    
                 </div>
 
                 <button class="btn-theme">Join course</button>

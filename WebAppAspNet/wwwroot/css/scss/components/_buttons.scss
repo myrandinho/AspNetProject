@@ -39,17 +39,17 @@
     } 
 }
 
-.btn-gray { 
+.btn-gray {
     @include button;
-    background: $gray-200;
-    color: $gray-800;
+    background: var(--color-gray-200);
+    color: var(--color-gray-800);
     border: none;
 
     &:hover {
         text-decoration: none;
         background: $gray-700;
         color: $white;
-    } 
+    }
 }
 
 .btn-switch {

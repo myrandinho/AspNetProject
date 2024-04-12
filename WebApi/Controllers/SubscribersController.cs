@@ -1,9 +1,11 @@
 ﻿
 using Infrastructure.Contexts;
+using Infrastructure.Dtos;
 using Infrastructure.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebApi.Filters;
 
 
 namespace WebApi.Controllers;
@@ -20,33 +22,33 @@ public class SubscribersController : ControllerBase
     }
 
     
-    [HttpPost]
-    public async Task<IActionResult> Create(string email)
-    {
-        if (!string.IsNullOrEmpty(email))
-        {
-            if (!await _context.Subscribers.AnyAsync(x => x.Email == email))
-            {
-                try
-                {
-                    var subscriberEntity = new SubscriberEntity { Email = email };
-                    _context.Subscribers.Add(subscriberEntity);
-                    await _context.SaveChangesAsync();
+    //[HttpPost]
+    //public async Task<IActionResult> Create(string email)
+    //{
+    //    if (!string.IsNullOrEmpty(email))
+    //    {
+    //        if (!await _context.Subscribers.AnyAsync(x => x.Email == email))
+    //        {
+    //            try
+    //            {
+    //                var subscriberEntity = new SubscriberEntity { Email = email };
+    //                _context.Subscribers.Add(subscriberEntity);
+    //                await _context.SaveChangesAsync();
 
-                    return Created("", null);
-                }
-                catch
-                {
-                    return Problem("Unable to create subscription.");
-                }
-            }
+    //                return Created("", null);
+    //            }
+    //            catch
+    //            {
+    //                return Problem("Unable to create subscription.");
+    //            }
+    //        }
 
-            return Conflict("Your email adress is already subscribed.");
-        }
+    //        return Conflict("Your email adress is already subscribed.");
+    //    }
 
-        return BadRequest();
+    //    return BadRequest();
         
-    }
+    //}
 
 
 
@@ -112,5 +114,27 @@ public class SubscribersController : ControllerBase
         return NotFound();
     }
     #endregion
+
+
+    [UseApiKey]
+    [HttpPost]
+    public async Task<IActionResult> Subscribe(Subscriber dto)
+    {
+        if (ModelState.IsValid)
+        {
+            if (! await _context.Subscribers.AnyAsync(x => x.Email == dto.Email))
+            {
+                _context.Subscribers.Add(dto);
+                await _context.SaveChangesAsync();
+                return Created("", null);
+            }
+            else
+            {
+                return Conflict();
+            }
+        }
+
+        return BadRequest();
+    }
 }
 

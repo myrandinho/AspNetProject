@@ -1,11 +1,12 @@
 .subscribe {
-    background-color: #F3F6FF;
+    background-color: var(--color-gray-000);
     padding-top: 5rem;
     padding-bottom: 5rem;
 
     .container {
 
         .content {
+
 
             @include lg {
                 padding-left: 20%;
@@ -22,6 +23,7 @@
 
                 h2 {
                     font-weight: 800;
+                    color: var(--color-gray-900);
                 }
 
                 img {
@@ -39,6 +41,7 @@
 
                 h6 {
                     font-weight: 800;
+                    color: var(--color-gray-900);
                 }
                 ///
                 .checkbox-area {
@@ -145,6 +148,11 @@
             }
 
             p {
+                color: var(--color-gray-600);
+            }
+
+            .status-info {
+                color: var(--color-gray-900);
             }
         }
     }

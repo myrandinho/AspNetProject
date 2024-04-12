@@ -2,6 +2,7 @@
 
 
 .error404 {
+    background-color: var(--color-gray-000) !important;
     position: relative;
     height: 100vh;
 
@@ -25,9 +26,11 @@
 
             h1 {
                 font-weight: 800;
+                color: var(--color-gray-900) !important;
             }
 
             p {
+                color: var(--color-gray-700) !important;
             }
 
             .btn-position {
@@ -35,7 +38,6 @@
                 justify-content: center;
 
                 .btn-theme {
-                    
                 }
             }
         }

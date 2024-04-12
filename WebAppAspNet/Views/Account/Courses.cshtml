@@ -1,4 +1,7 @@
-﻿@model IEnumerable<CourseEntity>
+﻿@* @model IEnumerable<Course> *@
+
+
+@model CourseIndexViewModel
 
 @{
     ViewData["Title"] = "Courses";
@@ -13,47 +16,92 @@
 
         <div class="top-area">
             <p><i class="fa-regular fa-house"></i>Home<i class="fa-solid fa-angles-right"></i><span>Courses</span></p>
-            <div class="topic-and-search">
+            <form class="topic-and-search">
                 <h2>Courses</h2>
                 <div class="browse-and-search">
-                    <a href="#">All categories</a>
-                    <input placeholder="Search courses"/>
-                </div>
-            </div>
-        </div>
-        <div class="courses">
-            @foreach(var course in Model)
-            {
-                <a href="#" class="course">
-                    @if (course.IsBestseller)
-                    {
-                        <div class="best-seller">Bestseller</div>
-                    }
-                    <img src="~/Images/@course.ImageUrl" alt="" />
-                    <div class="course-content">
-                        <h5>@course.Title</h5>
-                        <p>By @course.Author</p>
-                        @if (course.DiscountPrice != null)
-                        {
-                            <div class="prices">
-                                <h5 class="discount-price">$@course.DiscountPrice</h5>
-                                <h5 class="old-price">$@course.Price</h5>
-                            </div>
-                        }
-                        else
-                        {
-                            <h5 class="price">$@course.Price</h5>
-                        }
-                        
-                        
-                        <div class="length-rating">
-                            <p class="length"><i class="fa-regular fa-clock"></i>@course.Hours hours</p>
-                            <p class="rating"><i class="fa-regular fa-thumbs-up"></i>@course.LikesInProcent% (@course.LikesInNumbers K)</p>
+
+                    @* <a href="#">All categories</a> *@
+
+
+
+                    <div class="select">
+                        <div class="selected">All categories</div>
+                        <i class="fa-solid fa-caret-down"></i>
+                        <div class="select-options">
+                            <div class="option" data-value="all">All categories</div>
+                            @if (Model.Categories != null)
+                            {
+                                foreach (var category in Model.Categories)
+                                {
+                                    <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
+                                }
+                            }
                         </div>
                     </div>
-                </a>
+
+
+
+                    <div class="input-search-group">
+                        <input id="searchQuery" name="searchQuery" placeholder="Search courses" />
+                        <i class="fa-regular fa-search"></i>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+        <div class="courses items">
+            @if (Model.Courses != null)
+            {
+                @foreach (var course in Model.Courses)
+                {
+                    <div class="course" onclick="location.href='@Url.Action("SingleCourse", "Account", new { id = course.Id })'">
+                        @if (course.IsBestseller)
+                        {
+                            <div class="best-seller">Bestseller</div>
+                        }
+                        <a class="bookmark-btn" asp-action="Join" asp-controller="Account"><i class="fa-regular fa-bookmark"></i></a>
+                        <img class="course-image" src="~/Images/@course.ImageUrl" alt="" />
+                        <div class="course-content">
+                            <h5>@course.Title</h5>
+                            <p>By @course.Author</p>
+                            @if (course.DiscountPrice != null)
+                            {
+                                <div class="prices">
+                                    <h5 class="discount-price">$@course.DiscountPrice</h5>
+                                    <h5 class="old-price">$@course.Price</h5>
+                                </div>
+                            }
+                            else
+                            {
+                                <h5 class="price">$@course.Price</h5>
+                            }
+
+
+                            <div class="length-rating">
+                                <p class="length"><i class="fa-regular fa-clock"></i>@course.Hours hours</p>
+                                <p class="rating"><i class="fa-regular fa-thumbs-up"></i>@course.LikesInProcent% (@course.LikesInNumbers K)</p>
+                            </div>
+                        </div>
+                    </div>
+                }
             }
         </div>
+        @if (Model.Pagination != null && Model.Pagination.TotalPages > 1)
+        {
+            <div class="pagination">
+                @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
+                {
+                    if (i == Model.Pagination.CurrentPage)
+                    {
+                        <span class="number active">@i</span>
+                    }
+                    else
+                    {
+                        <a class="number notactive" href="@Url.Action("Courses", new {pageNumber = i, pageSize = Model.Pagination.PageSize })">@i</a>
+                    }
+                }
+            </div>
+        }
 
 
         <div class="get-started">
@@ -66,3 +114,5 @@
         </div>
     </div>
 </section>
+
+<script src="~/js/dropdown.js"></script>

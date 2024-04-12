@@ -1,5 +1,9 @@
 .security {
-    padding-top: 5rem;
+    background-color: var(--color-gray-000) !important;
+
+    .error-text {
+        color: red;
+    }
 
     .container {
 
@@ -17,49 +21,57 @@
             @include lg {
                 width: 20rem;
                 padding-right: 2rem;
-                border-right: 1px solid $gray-400;
+                border-right: 1px solid var(--color-gray-400) !important;
             }
 
             .profile {
-                display: grid;
-                grid-template-columns: auto;
-                justify-content: center;
                 text-align: center;
                 padding-top: 3rem;
+
+
 
 
                 .profile-image {
                     position: relative;
                     z-index: 1;
 
-
-                    .btn-white-circle {
-                        height: 36px;
-                        width: 36px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                    img {
+                        height: 120px;
+                        width: 120px;
                         border-radius: 50%;
-                        border: 1px solid #E2E5F1;
-                        text-decoration: none;
-                        color: #33354D;
-                        position: absolute;
-                        right: 45px;
-                        bottom: 10px;
-                        background-color: #fff;
-                        z-index: 2;
+                        object-fit: cover;
+                    }
+
+                    form {
+                        .btn-white-circle {
+                            height: 36px;
+                            width: 36px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 50%;
+                            border: 1px solid var(--color-gray-300) !important;
+                            text-decoration: none;
+                            color: var(--color-gray-900) !important;
+                            position: absolute;
+                            right: 70px;
+                            bottom: 10px;
+                            background-color: var(--color-gray-000) !important;
+                            z-index: 2;
+                        }
                     }
                 }
 
                 .profile-info {
 
+
                     h3 {
                         font-weight: 800;
-                        color: $gray-900;
+                        color: var(--color-gray-900) !important;
                     }
 
                     p {
-                        color: $gray-700;
+                        color: var(--color-gray-700) !important;
                     }
                 }
             }
@@ -84,14 +96,14 @@
                     justify-content: center;
                     align-items: center;
                     text-decoration: none;
-                    color: $gray-800;
+                    color: var(--color-gray-800) !important;
                     width: 40px;
                     height: 40px;
                     padding: 0;
                     border-radius: 6px;
 
                     i {
-                        color: $gray-600;
+                        color: var(--color-gray-600) !important;
 
                         @include lg {
                             margin-left: 2rem;
@@ -103,7 +115,7 @@
                         width: 20rem;
 
                         &:hover {
-                            background-color: $gray-200;
+                            background-color: var(--color-gray-200) !important;
                         }
                     }
                 }
@@ -223,6 +235,7 @@
 
     .security-content {
         grid-area: security;
+        padding-top: 3rem;
         padding-left: 0;
 
         @include lg {
@@ -230,6 +243,7 @@
         }
 
         h2 {
+            color: var(--color-gray-900) !important;
             font-weight: 800;
             margin-bottom: 3rem;
         }
@@ -294,10 +308,9 @@
         }
 
         .delete-account {
-
             display: block;
             padding-bottom: 3rem;
-           
+
 
             h5 {
                 font-weight: 700;
@@ -306,10 +319,14 @@
             }
 
             .delete-info {
-                color: $gray-700;
+                color: var(--color-gray-700) !important;
             }
+            /*            .text-with-validation {
+                color: var(--color-gray-700);
+            }*/
 
-            
+
+
 
             .delete-btn {
                 background-color: $danger;

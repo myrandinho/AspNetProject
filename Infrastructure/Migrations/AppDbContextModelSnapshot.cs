@@ -56,6 +56,23 @@ namespace Infrastructure.Migrations
                     b.ToTable("Adresses");
                 });
 
+            modelBuilder.Entity("Infrastructure.Entities.CategoryEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("Infrastructure.Entities.CourseEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -66,6 +83,12 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DiscountPrice")
                         .HasColumnType("nvarchar(max)");
@@ -78,6 +101,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<bool>("IsBestseller")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LikesInNumbers")
                         .HasColumnType("nvarchar(max)");
@@ -94,6 +120,8 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Courses");
                 });
 
@@ -105,9 +133,27 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("AdvertisingUpdates")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("DailyNewsletter")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EventUpdates")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Podcasts")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("StartupsWeekly")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("WeekInReview")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -143,6 +189,9 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsExternalAccount")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -169,6 +218,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ProfileImage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -339,6 +391,15 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Infrastructure.Entities.CourseEntity", b =>
+                {
+                    b.HasOne("Infrastructure.Entities.CategoryEntity", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
