@@ -34,7 +34,7 @@
         <div class="lower">
             <img src="~/Images/contact-map.svg" />
 
-            <form class="container" method="post">
+            <form class="container" method="post" asp-action="SendRequest" asp-controller="Home" novalidate>
                 <h3>Get In Contact With Us</h3>
                 <div id="form-fullname" class="input-group">
                     <label asp-for="FullName"></label>
@@ -59,4 +59,4 @@
     
 </section>
 
-<script src="~/js/contactform-validation.js"></script>
+@* <script src="~/js/contactform-validation.js"></script> *@

@@ -21,4 +21,7 @@ public class UserEntity : IdentityUser
     public bool IsExternalAccount { get; set; } = false;
 
     public string? ProfileImage { get; set; } = "avatar.jpg";
+
+
+    public ICollection<UserCourseEntity>? UserCourses { get; set; }
 }

@@ -2,6 +2,9 @@
 
 @{
     var user = await UserManager.GetUserAsync(User);
+    var userCourseList = AccountService.GetUserCoursesAsList(user.Id);
+
+
 }
 
 
@@ -19,14 +22,55 @@
             </nav>
         </aside>
         <div class="content">
-            <div class="topic-and-deleteall">
+            <form class="topic-and-deleteall" method="post" asp-action="DeleteAll" asp-controller="Account">
                 <h2>Saved Items</h2>
-                <a class="my-delete-btn" href="#"><i class="fa-regular fa-trash"></i>Delete all</a>
-            </div>
+                <button class="my-delete-btn" type="submit"><i class="fa-regular fa-trash"></i>Delete all</button>
+            </form>
             <div class="course-area">
-                <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
+               @*  <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
                     <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
-                        <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml">
+                        <Partial name="~/Views/Shared/Partials/Components/_Course.cshtml"> *@
+
+                            @if (userCourseList != null)
+                            {
+
+                                foreach (var course in userCourseList)
+                                {
+                                    <div class="course" onclick="location.href='@Url.Action("SingleCourse", "Account", new { id = course.Id })'">
+                                        @if (course.IsBestseller)
+                                        {
+                                            <div class="best-seller">Bestseller</div>
+                                        }
+                                        <form method="post" asp-controller="Account" asp-action="DeleteCourse" asp-route-id="@course.Id">
+                                            <button class="bookmark-btn" type="submit"><i class="fa-solid fa-bookmark"></i></button>
+                                        </form>
+
+                                        <img class="course-image" src="~/Images/@course.ImageUrl" alt="" />
+                                        <div class="course-content">
+                                            <h5>@course.Title</h5>
+                                            <p>By @course.Author</p>
+                                            @if (course.DiscountPrice != null)
+                                            {
+                                                <div class="prices">
+                                                    <h5 class="discount-price">$@course.DiscountPrice</h5>
+                                                    <h5 class="old-price">$@course.Price</h5>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <h5 class="price">$@course.Price</h5>
+                                            }
+
+
+                                            <div class="length-rating">
+                                                <p class="length"><i class="fa-regular fa-clock"></i>@course.Hours hours</p>
+                                                <p class="rating"><i class="fa-regular fa-thumbs-up"></i>@course.LikesInProcent% (@course.LikesInNumbers K)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+         
             </div>
         </div>
     </div>

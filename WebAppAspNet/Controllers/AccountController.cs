@@ -226,6 +226,8 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
         var viewModel = new CourseIndexViewModel
         {
+
+            
             Categories = await _categoryService.GetCategoriesAsync(),
             Courses = courseResult.Courses,
             Pagination = new Pagination
@@ -275,26 +277,81 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
     }
 
 
-    //[HttpPost]
-    //public async Task<IActionResult> Join(int id)
-    //{
-    //    if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
-    //    {
+    [HttpPost]
+    public async Task<IActionResult> Join(int id)
+    {
+        if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
+        {
 
-    //        _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token); //Om accesstoken finns. Körs authentisering.
+            _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token); //Om accesstoken finns. Körs authentisering.
 
-    //        var response = await _http.GetAsync($"https://localhost:7127/api/Courses/{id}?key={_configuration["ApiKey"]}");
-    //        if (response.IsSuccessStatusCode)
-    //        {
+            var response = await _http.GetAsync($"https://localhost:7127/api/Courses/{id}?key={_configuration["ApiKey"]}");
+            if (response.IsSuccessStatusCode)
+            {
 
-    //            var course = JsonConvert.DeserializeObject<Course>(await response.Content.ReadAsStringAsync());
+                var course = JsonConvert.DeserializeObject<CourseEntity>(await response.Content.ReadAsStringAsync());
 
-    //            var result = await _accountService.SaveCourseToUser(course, userId);
-    //        }
-    //    }
+                var user = await _userManager.GetUserAsync(User);
+                if (user != null)
+                {
+                    string userId = user.Id;
+                    var result = await _accountService.SaveCourseToUser(course, userId);
+                    return RedirectToAction("SavedCourses", "Account");
+                }
 
-    //    return View();
-    //}
+                
+            }
+        }
+
+        return View("Error404");
+    }
+
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteCourse(int id)
+    {
+
+
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var result = await _accountService.DeleteUserSavedCourse(user.Id, id);
+
+            if (result)
+            {
+               
+                return RedirectToAction("SavedCourses");
+            }
+        }
+
+        return View("Error404");
+
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteAll()
+    {
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var result = await _accountService.DeleteUserCourses(user.Id);
+
+            if (result)
+            {
+                return RedirectToAction("SavedCourses");
+            }
+        }
+
+        return View("Error404");
+    }
+
+
+
+
+
+
 
     //[Authorize]
     //[HttpGet]

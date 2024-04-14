@@ -5,6 +5,7 @@
 
 @{
     ViewData["Title"] = "Courses";
+    var user = await UserManager.GetUserAsync(User);
 
 }
 
@@ -59,7 +60,10 @@
                         {
                             <div class="best-seller">Bestseller</div>
                         }
-                        <a class="bookmark-btn" asp-action="Join" asp-controller="Account"><i class="fa-regular fa-bookmark"></i></a>
+                        <form method="post" asp-controller="Account" asp-action="Join" asp-route-id="@course.Id">
+                            <button class="bookmark-btn" type="submit"><i class="fa-regular fa-bookmark"></i></button>
+                        </form>
+                       
                         <img class="course-image" src="~/Images/@course.ImageUrl" alt="" />
                         <div class="course-content">
                             <h5>@course.Title</h5>

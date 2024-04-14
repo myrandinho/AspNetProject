@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Text;
 using WebAppAspNet.ViewModels;
+using WebAppAspNet.ViewModels.Account;
 
 namespace WebAppAspNet.Controllers;
 
@@ -105,6 +106,50 @@ public class HomeController(AppDbContext context, AccountService accountService)
         }
         else
             return RedirectToAction("Error404", "Home");
+    }
+
+
+
+
+    [HttpPost]
+    public async Task<IActionResult> SendRequest(ContactFormViewModel viewModel)
+    {
+        if (ModelState.IsValid)
+        {
+
+            try
+            {
+                using var http = new HttpClient();
+
+                var content = new StringContent(JsonConvert.SerializeObject(viewModel), Encoding.UTF8, "application/json");
+                var response = await http.PostAsync("https://localhost:7127/api/contact?key=OWNhNmM2NTUtZjcxMC00ODA3LTg0YTgtYzAxODc1ZWFhZGZm", content);
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["Status"] = "Success";
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+                {
+                    TempData["Status"] = "AlreadyExists";
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    TempData["Status"] = "Unauthorized";
+                }
+
+            }
+            catch
+            {
+                TempData["Status"] = "ConnectionFailed";
+            }
+        }
+        else
+        {
+            TempData["Status"] = "Invalid";
+        }
+
+        return RedirectToAction("Contact", "Home", viewModel);
     }
 
 
