@@ -3,7 +3,16 @@
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 52rem;
+    height: 30rem;
+
+    @include md {
+        height: 50rem;
+    }
+
+    @include xl {
+        
+    }
+
 
     .dark-left {
         background-color: $gray-900;
@@ -25,11 +34,13 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        width: 100%;
 
 
 
         .text-position {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             justify-content: center;
             margin-bottom: 4rem;
             text-align: center;
@@ -37,22 +48,32 @@
 
 
             .white-text {
+                display: flex;
+                justify-content: end;
                 color: #ffffff;
                 font-weight: 800;
-                margin-right: 1rem;
-                margin-left: 1rem;
+                padding-right: 8px;
             }
 
             .dark-text {
+                display: flex;
+                justify-content: start;
                 color: black;
                 font-weight: 800;
-                margin-left: 1rem;
+                padding-left: 8px;
             }
         }
 
         img {
-            max-height: 100%;
+            max-height: auto;
             max-width: 100%;
+            padding-left: 22%;
+            padding-right: 22%;
+
+            @include xl {
+
+                
+            }
         }
     }
 }

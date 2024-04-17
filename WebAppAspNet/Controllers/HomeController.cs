@@ -44,7 +44,7 @@ public class HomeController(AppDbContext context, AccountService accountService)
         return View();
     }
 
-    //[Route("/testing")]
+    
     [HttpGet]
     public IActionResult Subscribe()
     {
@@ -52,7 +52,7 @@ public class HomeController(AppDbContext context, AccountService accountService)
         return View(new SuberscribeViewModel());
     }
 
-    //[Route("/testing")]
+    
     [HttpPost]
     public async Task<IActionResult> Subscribe(SuberscribeViewModel viewModel)
     {
@@ -94,18 +94,22 @@ public class HomeController(AppDbContext context, AccountService accountService)
         return View(viewModel);
     }
 
-
+    
     [HttpPost]
     public async Task<IActionResult> Unsubscribe(string email)
     {
-        var subscriber = await _accountService.GetSubscriber(email);
-        if (subscriber != null)
+        if (ModelState.IsValid)
         {
-            var result = await _accountService.DeleteSubscriberFromDatabase(subscriber);
-            return RedirectToAction("Index", "Home");
+            var subscriber = await _accountService.GetSubscriber(email);
+            if (subscriber != null)
+            {
+                var result = await _accountService.DeleteSubscriberFromDatabase(subscriber);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+                return RedirectToAction("Error404", "Home");
         }
-        else
-            return RedirectToAction("Error404", "Home");
+        return BadRequest();
     }
 
 
@@ -154,18 +158,5 @@ public class HomeController(AppDbContext context, AccountService accountService)
 
 
 
-    //[HttpDelete("{email}")]
-    //public async Task<IActionResult> Unsubscribe(string email)
-    //{
-    //    var subscriber = await _context.Subscribers.FirstOrDefaultAsync(x => x.Email == email);
-    //    if (subscriber != null)
-    //    {
-    //        _context.Subscribers.Remove(subscriber);
-    //        await _context.SaveChangesAsync();
 
-    //        return Ok();
-    //    }
-
-    //    return NotFound();
-    //}
 }

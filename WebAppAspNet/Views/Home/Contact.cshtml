@@ -34,15 +34,15 @@
         <div class="lower">
             <img src="~/Images/contact-map.svg" />
 
-            <form class="container" method="post" asp-action="SendRequest" asp-controller="Home" novalidate>
+            <form class="container" method="post" asp-action="SendRequest" asp-controller="Home" novalidate onsubmit="return validateContactForm(event)">
                 <h3>Get In Contact With Us</h3>
                 <div id="form-fullname" class="input-group">
                     <label asp-for="FullName"></label>
-                    <input id="fullname" asp-for="FullName" />
+                    <input class="required-field" id="fullname" asp-for="FullName" />
                 </div>
                 <div id="form-email" class="input-group">
                     <label asp-for="Email"></label>
-                    <input id="email"  asp-for="Email" />
+                    <input class="required-field" id="email" asp-for="Email" />
                 </div>
                 <div class="service-dropdown input-group">
                     <label asp-for="Service"></label>
@@ -50,13 +50,37 @@
                 </div>
                 <div id="form-message" class="input-group">
                     <label asp-for="Message"></label>
-                    <textarea id="message"  asp-for="Message"></textarea>
+                    <textarea class="required-field" id="message" asp-for="Message"></textarea>
                 </div>
                 <button type="submit" class="btn-theme">Send Contact Request</button>
+                <div class="status-info">
+                    @if (TempData["Status"]?.ToString() == "Success")
+                    {
+                        <span class="confirm-msg">Successfully <i class="fa-solid fa-check"></i></span>
+                    }
+                    else if (TempData["Status"]?.ToString() == "AlreadyExists")
+                    {
+                        <span class="error-msg">You have already contacted us. Please wait for our response.</span>
+
+                    }
+                    else if (TempData["Status"]?.ToString() == "Invalid")
+                    {
+                        <span class="error-msg">Please try again.</span>
+                    }
+                    else if (TempData["Status"]?.ToString() == "ConnectionFailed")
+                    {
+                        <span class="error-msg">Connection to server failed. Please try again later.</span>
+                    }
+                    else if (TempData["Status"]?.ToString() == "Unauthorized")
+                    {
+                        <span class="error-msg">Somthing went wrong. Please contact web admin.</span>
+                    }
+
+                </div>
             </form>
         </div>
     </div>
     
 </section>
 
-@* <script src="~/js/contactform-validation.js"></script> *@
+<script src="~/js/contactform-vali.js"></script>

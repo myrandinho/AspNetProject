@@ -18,7 +18,7 @@ public class ContactController(AppDbContext context) : ControllerBase
 
 
 
-    [UseApiKey]
+    
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {

@@ -33,4 +33,20 @@ h6, .h6 { @include h6; }
     grid-template-rows: auto 1fr auto;
 }
 
+.confirm-msg {
+    color: green;
+    background-color: #edffee;
+    padding: 5px 10px;
+    border: 1px solid green;
+    border-radius: 6px;
+}
+
+.error-msg {
+    color: red;
+    background-color: #F5D7DA;
+    padding: 5px 10px;
+    border: 1px solid red;
+    border-radius: 6px;
+}
+
 

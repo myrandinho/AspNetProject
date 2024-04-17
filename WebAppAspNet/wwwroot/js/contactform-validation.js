@@ -1,71 +1,52 @@
+function validateForm(event) {
+    var isValid = true;
 
+    // Hämta referenser till de olika fälten
+    var fullNameField = document.getElementById("fullname");
+    var emailField = document.getElementById("email");
+    var messageField = document.getElementById("message");
 
-//EJ KLAR
+    // Återställ tidigare felmeddelanden och border-stilar
+    fullNameField.style.borderColor = "";
+    emailField.style.borderColor = "";
+    messageField.style.borderColor = "";
+    fullNameField.nextElementSibling.textContent = "";
+    emailField.nextElementSibling.textContent = "";
+    messageField.nextElementSibling.textContent = "";
 
-    // Function to handle form submission
-
-
-
-
-const handleFormData = (e) => {
-    e.preventDefault();
-
-    // Selecting form and input elements
-    const form = document.querySelector("form");
-    const passwordInput = document.getElementById("current-pw");
-    const newPasswordInput = document.getElementById("new-pw");
-    const confirmedNewPasswordInput = document.getElementById("confirmed-pw");
-
-
-    // Remove input-validation-error class from all inputs
-    document.querySelectorAll("input").forEach(input => input.classList.remove("input-validation-error"));
-
-    // Function to display error messages
-    const showError = (field, errorText) => {
-        field.classList.add("error");
-        const errorElement = document.createElement("small");
-        errorElement.classList.add("error-text");
-        errorElement.innerText = errorText;
-        field.closest(".input-group").appendChild(errorElement);
+    // Validera att alla fält är ifyllda
+    if (fullNameField.value.trim() === "") {
+        fullNameField.style.borderColor = "lightcoral";
+        fullNameField.style.borderWidth = "5px";
+        fullNameField.nextElementSibling.textContent = "Full Name is required";
+        isValid = false;
+    }
+    if (emailField.value.trim() === "") {
+        emailField.style.borderColor = "lightcoral";
+        emailField.style.borderWidth = "5px";
+        emailField.nextElementSibling.textContent = "Email is required";
+        isValid = false;
+    }
+    if (messageField.value.trim() === "") {
+        messageField.style.borderColor = "lightcoral";
+        messageField.style.borderWidth = "5px";
+        messageField.nextElementSibling.textContent = "Message is required";
+        isValid = false;
     }
 
-    // Getting trimmed values from input fields
-
-    const password = passwordInput.value.trim();
-    const newPassword = newPasswordInput.value.trim();
-    const confirmedPassword = confirmedNewPasswordInput.value.trim();
-
-
-
-    // Clearing previous error messages
-    document.querySelectorAll(".input-group .error").forEach(field => field.classList.remove("error"));
-    document.querySelectorAll(".error-text").forEach(errorText => errorText.remove());
-
-    // Performing validation checks
-    let hasErrors = false;
-
-
-    if (password === "") {
-        showError(passwordInput, "Enter your password");
-        hasErrors = true;
-    }
-    if (newPassword === "") {
-        showError(newPasswordInput, "Enter your new password");
-        hasErrors = true;
-    }
-    if (confirmedPassword === "") {
-        showError(confirmedNewPasswordInput, "Confirm your password");
-        hasErrors = true;
+    // Validera e-postadress med RegEx
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailField.value.trim())) {
+        emailField.style.borderColor = "lightcoral";
+        emailField.style.borderWidth = "5px";
+        emailField.nextElementSibling.textContent = "Invalid email format";
+        isValid = false;
     }
 
-    // Submitting the form if no errors
-    if (!hasErrors) {
-        form.submit();
+    // Om valideringen inte lyckas, förhindra formuläret från att skickas
+    if (!isValid) {
+        event.preventDefault();
     }
+
+    return isValid;
 }
-
-// Handling form submission event
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
-    form.addEventListener("submit", handleFormData);
-});

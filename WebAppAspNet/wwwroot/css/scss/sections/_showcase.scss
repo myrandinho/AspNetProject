@@ -1,46 +1,51 @@
-
 .showcase {
-    position: relative;
-    padding-bottom: 80px;
     background-color: var(--color-gray-000);
-
+    position: relative;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 
     @include lg {
-        display: flex;
-        justify-content: flex-end;
-        padding-bottom: 200px;
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    @include xxl {
+        padding-bottom: 12rem;
     }
 
     .background-image {
-        position: relative;
-        justify-content: flex-end;
-        width: 100%;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        display: none;
+        height: auto;
+        width: 45%;
 
-        @include lg {
+
+
+        @include xl {
+            width: 50%;
+            display: block;
+        }
+
+        @include xxl {
             width: 45%;
         }
     }
 
     .container {
-        height: 100%;
 
-        @include lg {
-            position: absolute;
-            left: 0;
-            right: 0;
+        @include xl {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
 
         .content {
-            margin-top: 0px;
-            width: 100%;
             text-align: center;
 
-            @include lg {
-                margin-top: 100px;
-                width: 40%;
-                text-align: left;
+            @include xl {
+                text-align: start;
             }
-
 
             h1 {
                 color: var(--color-gray-900) !important;
@@ -64,6 +69,7 @@
 
             .btn-theme-s {
                 display: inline-block;
+                margin-bottom: 2rem;
             }
 
             h6 {
@@ -72,24 +78,38 @@
                 margin: 150px 0 30px 0;
                 display: none;
 
-                @include lg {
+                @include xl {
                     margin: 100px 0 30px 0;
                     display: flex;
                 }
             }
 
-            .brands {
-                display: none;
-                gap: 30px;
 
-                @include lg {
-                    display: flex;
+            .brands-box {
+                display: flex;
+                justify-content: center;
+
+                @include xl {
+                    justify-content: start;
                 }
 
-                img {
-                    width: 120px;
+                .brands {
+                    display: grid;
+                    gap: 1rem;
+                    grid-template-columns: 1fr 1fr;
+
+                    @include md {
+                        display: flex;
+                    }
+
+                    img {
+                        width: 120px;
+                    }
                 }
             }
+        }
+
+        .empty-box {
         }
     }
 }

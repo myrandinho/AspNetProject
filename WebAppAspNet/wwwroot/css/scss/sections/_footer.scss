@@ -17,10 +17,15 @@ footer {
             margin-bottom: 30px;
 
             .btn-social {
-                background-color: var(--color-gray-200) !important;
+                background-color: var(--color-gray-200);
 
                 i {
-                    color: var(--color-gray-900) !important;
+                    color: var(--color-gray-900);
+                }
+
+                &:hover {
+                    text-decoration: none;
+                    background: var(--color-gray-400);
                 }
             }
         }

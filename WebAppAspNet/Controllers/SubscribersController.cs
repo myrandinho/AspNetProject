@@ -5,7 +5,7 @@ namespace WebAppAspNet.Controllers
 {
     public class SubscribersController : Controller
     {
-        [Route("/testing")]
+        
         [HttpGet]
         public IActionResult Subscribe()
         {
@@ -13,7 +13,7 @@ namespace WebAppAspNet.Controllers
             return View(new SuberscribeViewModel());
         }
 
-        [Route("/testing")]
+        
         [HttpPost]
         public async Task<IActionResult> Subscribe(SuberscribeViewModel viewModel)
         {

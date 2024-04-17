@@ -11,6 +11,7 @@
         @include lg {
             display: grid;
             grid-template-columns: auto 1fr;
+
         }
 
         img {
@@ -28,6 +29,8 @@
             display: flex;
             flex-direction: column;
 
+
+
             @include lg {
                 padding-left: 5rem;
             }
@@ -37,6 +40,7 @@
                 color: var(--color-gray-900) !important;
 
                 @include h4;
+
 
                 @include lg {
                     @include h2;
@@ -50,6 +54,7 @@
                 grid-template-columns: 1fr 1fr;
 
 
+
                 @include lg {
                     grid-template-columns: 1fr;
                 }
@@ -61,6 +66,7 @@
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
+
 
                     @include lg {
                         justify-content: start;
@@ -103,17 +109,19 @@
                         display: flex;
                         align-items: end;
 
+
                         .dl-btn {
+                            display: inline-flex;
                             width: 10rem;
                             height: 2.5rem;
-                            display: inline-block;
                             align-items: end;
                             margin: 0 0 0 0;
 
 
+
                             img {
-                                width: 10rem;
-                                height: 2.5rem;
+                                width: 100%;
+                                height: auto;
                             }
                         }
                     }

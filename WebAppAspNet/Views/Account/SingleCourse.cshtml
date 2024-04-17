@@ -61,7 +61,7 @@
                     <p>In aenean dolor diam tortor orci eu.</p>
                 </div>
             </div>
-            <div class="course-card">
+            <form method="post" asp-controller="Account" asp-action="Join" asp-route-id="@Model.Id" class="course-card">
                 <h4>This course includes:</h4>
                 <div class="course-includes">
                     <i class="fa-regular fa-tv-retro"></i>
@@ -96,8 +96,8 @@
                     
                 </div>
 
-                <button class="btn-theme">Join course</button>
-            </div>
+                <button type="submit" class="btn-theme">Join course</button>
+            </form>
 
             
         </div>

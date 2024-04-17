@@ -110,13 +110,27 @@
             }
 
             .f-box-3 {
-                border-bottom: 0.5px solid var(--color-gray-300) !important;
-                border-left: 0.5px solid var(--color-gray-300) !important;
+                border-top: 0.5px solid var(--color-gray-300);
+                border-right: 0.5px solid var(--color-gray-300) !important;
+
+                @include lg {
+                    border-bottom: 0.5px solid var(--color-gray-300) !important;
+                    border-left: 0.5px solid var(--color-gray-300) !important;
+                    border-top: none;
+                    
+                }
             }
 
             .f-box-4 {
-                border-top: 0.5px solid var(--color-gray-300) !important;
-                border-right: 0.5px solid var(--color-gray-300) !important;
+                border-bottom: 0.5px solid var(--color-gray-300);
+                border-left: 0.5px solid var(--color-gray-300) !important;
+
+                @include lg {
+                    border-top: 0.5px solid var(--color-gray-300) !important;
+                    border-right: 0.5px solid var(--color-gray-300) !important;
+                    border-bottom: none;
+                    
+                }
             }
 
             .f-box-5 {

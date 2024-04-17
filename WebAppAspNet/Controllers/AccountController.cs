@@ -115,26 +115,13 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
                     return Redirect(returnUrl);
                 }
 
-
-                    
-
-
-
-                //var login = new Dictionary<string, string>()
-                //{
-                //    { "email", viewModel.Email }, { "password", viewModel.Password }
-                //};
-
-               
-
-
                 return RedirectToAction("Details", "Account");
             }
 
         }
 
-        //ModelState.AddModelError("IncorrectValues", "Incorrect email or password");
-        //ViewData["ErrorMessage"] = "Incorrect email or password";
+        ModelState.AddModelError("IncorrectValues", "Incorrect email or password");
+        ViewData["ErrorMessage"] = "Incorrect email or password";
         return View(viewModel);
     }
 
@@ -186,40 +173,12 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
 
 
-    //[Authorize]
-    //[HttpGet]
-    //[Route("/courses")]
-    //public async Task<IActionResult> Courses()
-    //{
-
-    //    if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
-    //    {
-
-    //        _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token); //Om accesstoken finns. Körs authentisering.
-
-    //        var response = await _http.GetAsync($"https://localhost:7127/api/Courses?key={_configuration["ApiKey"]}");
-    //        if (response.IsSuccessStatusCode)
-    //        {
-
-    //            var courses = JsonConvert.DeserializeObject<IEnumerable<Course>>(await response.Content.ReadAsStringAsync());
-    //            return View(courses);
-    //        }
-    //    }
-
-    //    return View();
-    //}
-
-
-
-
-
-
-
+    
 
 
     [Route("/courses")]
     [HttpGet]
-    public async Task<IActionResult> Courses(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 3)
+    public async Task<IActionResult> Courses(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 9)
     {
 
         var courseResult = await _courseService.GetCoursesAsync(category, searchQuery, pageNumber, pageSize);
@@ -346,24 +305,6 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
         return View("Error404");
     }
-
-
-
-
-
-
-
-    //[Authorize]
-    //[HttpGet]
-    //[Route("/courses/singlecourse")]
-    //public IActionResult SingleCourse()
-    //{
-    //    return View();
-    //}
-
-
-
-
 
 
 
@@ -551,12 +492,6 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
 
 
-    [Route("/account/detailstest")]
-    public IActionResult DetailsTest()
-    {
-        return View();
-    }
-
 
 
 
@@ -637,49 +572,4 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //[HttpPost]
-    //public IActionResult SaveBasicInfo(AccountDetailsViewModel viewModel)
-    //{
-    //    if (TryValidateModel(viewModel.BasicInfoForm))
-    //    {
-    //        return RedirectToAction("Home", "Index");
-    //    }
-
-    //    return View("Details", viewModel);
-
-    //}
-
-
-    //[HttpPost]
-    //public IActionResult SaveAdressInfo(AccountDetailsViewModel viewModel)
-    //{
-    //    if (TryValidateModel(viewModel.AdressInfoForm))
-    //    {
-    //        return RedirectToAction("Home", "Index");
-    //    }
-
-    //    return View("Details", viewModel);
-
-    //}
 }

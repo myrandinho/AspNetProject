@@ -61,26 +61,27 @@
                 <div class="status-info">
                     @if (TempData["Status"]?.ToString() == "Success")
                     {
-                        <span>You have been subscribed.</span>
+                        <span class="confirm-msg">You have been subscribed.</span>
                     }
                     else if (TempData["Status"]?.ToString() == "AlreadyExists")
                     {
-                        
-                            <span>Already subscribed.</span>
-                            <button asp-controller="Home" asp-action="Unsubscribe" class="btn-theme" type="submit">Unsubscribe!</button>
-
+                            <div class="error-area">
+                                <span class="error-msg">Already subscribed.</span>
+                                <button asp-controller="Home" asp-action="Unsubscribe" class="btn-theme" type="submit">Unsubscribe!</button>
+                            </div>
+                            
                     }
                     else if (TempData["Status"]?.ToString() == "Invalid")
                     {
-                        <span>Enter a valid email adress.</span>
+                        <span class="error-msg">Enter a valid email adress.</span>
                     }
                     else if (TempData["Status"]?.ToString() == "ConnectionFailed")
                     {
-                        <span>Connection to server failed. Please try again later.</span>
+                        <span class="error-msg">Connection to server failed. Please try again later.</span>
                     }
                     else if (TempData["Status"]?.ToString() == "Unauthorized")
                     {
-                        <span>Somthing went wrong. Please contact web admin.</span>
+                        <span class="error-msg">Somthing went wrong. Please contact web admin.</span>
                     }
 
                 </div>

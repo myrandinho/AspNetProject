@@ -14,8 +14,6 @@ public class AccountDetailsViewModel
 
     public SecurityFormViewModel? SecurityForm { get; set; }
     public DeleteUserViewModel? DeleteUser { get; set; }
-    public SuberscribeViewModel? Subscribe { get; set; }
-    public UserEntity? UserEntity { get; set; }
-    public UserCourseViewModel? userCourseViewModel { get; set; }
+
 
 }
