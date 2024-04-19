@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     select()
     searchQuery()
@@ -27,7 +26,7 @@ function select() {
                 selected.setAttribute('data-value', category)
                 updateCourseByFilter()
             })
-        })   
+        })
     }
     catch { }
 }
@@ -53,7 +52,7 @@ function searchQuery() {
 function updateCourseByFilter() {
     const category = document.querySelector('.select .selected').getAttribute('data-value') || 'all'
     const searchQuery = document.querySelector('#searchQuery').value
-    
+
 
 
     const url = `/courses?category=${encodeURIComponent(category)}&searchQuery=${encodeURIComponent(searchQuery)}`
@@ -66,6 +65,8 @@ function updateCourseByFilter() {
             document.querySelector('.items').innerHTML = dom.querySelector('.items').innerHTML
 
             const pagination = dom.querySelector('.pagination') ? dom.querySelector('.pagination').innerHTML : ''
-            document.querySelector('pagination').innerHTML = pagination
+            document.querySelector('.pagination').innerHTML = pagination
         })
 }
+
+

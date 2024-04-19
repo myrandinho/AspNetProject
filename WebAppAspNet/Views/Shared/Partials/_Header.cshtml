@@ -14,6 +14,32 @@
 
         <a asp-controller="Home" asp-action="Index" class="logo"><img src="~/Images/@(isDark ? "logo-dark.svg" : "silikon-logo.svg")"></a>
 
+        <div class="btn-mobile btn-group">
+            <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Menu
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#overview">Overview</a>
+                <a class="dropdown-item" href="#features">Features</a>
+                <a class="dropdown-item" asp-controller="Home" asp-action="Contact">Contact</a>
+                @if (_signInManager.IsSignedIn(User))
+                {
+                    <a class="dropdown-item" asp-controller="Courses" asp-action="Index">Courses</a>
+                }
+                <div class="dropdown-divider"></div>
+                @if (_signInManager.IsSignedIn(User))
+                {
+                    <a class="dropdown-item" asp-controller="Account" asp-action="SignOut">Sign out</a>
+
+                }
+                else
+                {
+                    <a class="dropdown-item" asp-controller="Account" asp-action="SignIn">Sign in</a>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="SignUp">Sign up</a>
+                }
+            </div>
+        </div>
+
         <div class="menu">
             <nav>
                 <a class="menu-link" href="#overview">Overview</a>
@@ -58,3 +84,4 @@
 </header>
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

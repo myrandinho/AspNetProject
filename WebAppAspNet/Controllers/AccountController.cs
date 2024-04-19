@@ -173,9 +173,9 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
 
 
-    
 
 
+    [Authorize]
     [Route("/courses")]
     [HttpGet]
     public async Task<IActionResult> Courses(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 9)
@@ -250,15 +250,16 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
                 var course = JsonConvert.DeserializeObject<CourseEntity>(await response.Content.ReadAsStringAsync());
 
-                var user = await _userManager.GetUserAsync(User);
-                if (user != null)
+                if (course != null)
                 {
-                    string userId = user.Id;
-                    var result = await _accountService.SaveCourseToUser(course, userId);
-                    return RedirectToAction("SavedCourses", "Account");
+                    var user = await _userManager.GetUserAsync(User);
+                    if (user != null)
+                    {
+                        string userId = user.Id;
+                        var result = await _accountService.SaveCourseToUser(course, userId);
+                        return RedirectToAction("SavedCourses", "Account");
+                    }
                 }
-
-                
             }
         }
 

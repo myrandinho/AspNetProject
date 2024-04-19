@@ -1,40 +1,41 @@
 .download {
     background-color: var(--color-gray-100);
 
+
     .container {
-        background-color: var(--color-gray-200);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 3rem;
+        background-color: var(--color-gray-1338); 
+        padding-top: 4rem;
+        padding-bottom: 3rem;
 
         @include lg {
             display: grid;
-            grid-template-columns: auto 1fr;
-
+            grid-template-columns: 1fr 1fr;
         }
 
-        img {
-            max-width: 75%;
-            height: auto;
-            margin-bottom: 2rem;
+        .image-area {
+            display: none;
 
             @include lg {
-                max-width: 100%;
-                margin-left: 10rem;
+                display: flex;
+                justify-content: center;
+            }
+
+            .mobile-img {
+                height: auto;
+                width: 447px;
             }
         }
+
+
 
         .download-content {
-            display: flex;
-            flex-direction: column;
-
-
+            text-align: center;
 
             @include lg {
-                padding-left: 5rem;
+                text-align: start;
+                padding-right: 10rem;
+                padding-left: 2rem;
             }
-
 
             h2 {
                 color: var(--color-gray-900) !important;
@@ -44,84 +45,96 @@
 
                 @include lg {
                     @include h2;
-                    padding-right: 15rem;
-                    padding-bottom: 1rem;
+                    margin-top: 3rem;
                 }
             }
 
             .apple-and-googleplay {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-
-
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
 
                 @include lg {
-                    grid-template-columns: 1fr;
+                    display: block;
+                    gap: 0;
+                    
                 }
 
-
-
-
                 .download-btn-and-reviews {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-
 
                     @include lg {
-                        justify-content: start;
+                        margin-bottom: 2rem;
                     }
 
-                    .download-info {
-                        display: none;
+
+                    .centrumized {
 
                         @include lg {
-                            display: block;
+                            display: flex;
                         }
 
-                        .txt1 {
-                            margin: 0 0 0 0;
-                            color: var(--color-gray-600);
-                        }
+                        .download-info {
 
-                        .stars {
+                            @include lg {
+                                padding-right: 3rem;
+                            }
 
-                            i {
-                                color: #FFBA08;
-                                font-size: 14px;
+                            .txt1 {
+                                margin: 0 0 0 0;
+                                color: var(--color-gray-600);
+                            }
+
+                            .stars {
+                                i {
+                                    color: #FFBA08;
+                                    font-size: 14px;
+                                }
+                            }
+
+                            h6 {
+                                display: block;
+                                color: var(--color-gray-900) !important;
+                                font-weight: 700;
+                            }
+
+                            .txt2 {
+                                margin: 0 0 0 0;
+                                color: var(--color-gray-700);
+                                display: none;
+
+
+                                @include lg {
+                                    display: block;
+                                }
                             }
                         }
 
-                        h6 {
-                            display: block;
-                            color: var(--color-gray-900) !important;
-                            font-weight: 700;
-                        }
-
-                        .txt2 {
-                            margin: 0 0 0 0;
-                            color: var(--color-gray-700);
-                        }
-                    }
+                        .btn-position {
 
 
-                    .btn-position {
-                        display: flex;
-                        align-items: end;
+                            @include lg {
+                                position: relative;
+                            }
+
+                            .dl-btn {
+                                display: inline-block;
+
+                                img {
+                                    height: auto;
+                                    width: 120px;
+
+                                    @include lg {
+                                        position: absolute;
+                                        bottom: 0px;
+                                        width: 180px;
+                                        
+                                    }
+                                }
 
 
-                        .dl-btn {
-                            display: inline-flex;
-                            width: 10rem;
-                            height: 2.5rem;
-                            align-items: end;
-                            margin: 0 0 0 0;
-
-
-
-                            img {
-                                width: 100%;
-                                height: auto;
+                                .small-fix {
+                                    left: 6px;
+                                }
                             }
                         }
                     }

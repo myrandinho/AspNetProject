@@ -223,6 +223,7 @@ h6, .h6 {
   --color-gray-800: #33354D;
   --color-gray-900: #0B0F19;
   --color-gray-1337: #FFFFFF;
+  --color-gray-1338: #EFF2FC;
 }
 
 :root.dark {
@@ -237,9 +238,9 @@ h6, .h6 {
   --color-gray-800: #F3F6FF;
   --color-gray-900: #FFFFFF;
   --color-gray-1337: #151922;
+  --color-gray-1338: #1E222B;
 }
 
-/*--color-gray-100: #33354D;*/
 a {
   line-height: 160%;
   font-weight: 400;
@@ -669,8 +670,8 @@ header {
 header .container {
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: "logo mobile";
+  grid-template-columns: 1fr auto auto;
+  grid-template-areas: "logo switch mobile";
   gap: 40px;
 }
 @media (min-width: 992px) {
@@ -700,7 +701,7 @@ header .container .menu nav a {
 }
 header .container .btn-switch {
   grid-area: switch;
-  display: none;
+  display: block;
 }
 header .container .btn-switch label {
   color: var(--color-gray-900);
@@ -729,6 +730,10 @@ header .container .account-buttons .profile-signed-in .prfl-image a img {
 header .container .btn-mobile {
   grid-area: mobile;
   display: block;
+}
+header .container .btn-mobile button {
+  background-color: #6366F1;
+  color: #fff;
 }
 @media (min-width: 992px) {
   header .container .btn-mobile {
@@ -3094,6 +3099,7 @@ footer .container span {
 .manage-work {
   padding-top: 5rem;
   background-color: var(--color-gray-000);
+  padding-bottom: 3rem;
 }
 .manage-work .container {
   display: flex;
@@ -3190,36 +3196,37 @@ footer .container span {
   background-color: var(--color-gray-100);
 }
 .download .container {
-  background-color: var(--color-gray-200);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 3rem;
+  background-color: var(--color-gray-1338);
+  padding-top: 4rem;
+  padding-bottom: 3rem;
 }
 @media (min-width: 992px) {
   .download .container {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
-.download .container img {
-  max-width: 75%;
-  height: auto;
-  margin-bottom: 2rem;
+.download .container .image-area {
+  display: none;
 }
 @media (min-width: 992px) {
-  .download .container img {
-    max-width: 100%;
-    margin-left: 10rem;
+  .download .container .image-area {
+    display: flex;
+    justify-content: center;
   }
 }
+.download .container .image-area .mobile-img {
+  height: auto;
+  width: 447px;
+}
 .download .container .download-content {
-  display: flex;
-  flex-direction: column;
+  text-align: center;
 }
 @media (min-width: 992px) {
   .download .container .download-content {
-    padding-left: 5rem;
+    text-align: start;
+    padding-right: 10rem;
+    padding-left: 2rem;
   }
 }
 .download .container .download-content h2 {
@@ -3241,68 +3248,79 @@ footer .container span {
     font-weight: 800;
     color: #0B0F19;
     font-size: 32px !important;
-    padding-right: 15rem;
-    padding-bottom: 1rem;
+    margin-top: 3rem;
   }
 }
 .download .container .download-content .apple-and-googleplay {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 @media (min-width: 992px) {
   .download .container .download-content .apple-and-googleplay {
-    grid-template-columns: 1fr;
+    display: block;
+    gap: 0;
   }
-}
-.download .container .download-content .apple-and-googleplay .download-btn-and-reviews {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
 }
 @media (min-width: 992px) {
   .download .container .download-content .apple-and-googleplay .download-btn-and-reviews {
-    justify-content: start;
+    margin-bottom: 2rem;
   }
-}
-.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .download-info {
-  display: none;
 }
 @media (min-width: 992px) {
-  .download .container .download-content .apple-and-googleplay .download-btn-and-reviews .download-info {
-    display: block;
+  .download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized {
+    display: flex;
   }
 }
-.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .download-info .txt1 {
+@media (min-width: 992px) {
+  .download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized .download-info {
+    padding-right: 3rem;
+  }
+}
+.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized .download-info .txt1 {
   margin: 0 0 0 0;
   color: var(--color-gray-600);
 }
-.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .download-info .stars i {
+.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized .download-info .stars i {
   color: #FFBA08;
   font-size: 14px;
 }
-.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .download-info h6 {
+.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized .download-info h6 {
   display: block;
   color: var(--color-gray-900) !important;
   font-weight: 700;
 }
-.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .download-info .txt2 {
+.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized .download-info .txt2 {
   margin: 0 0 0 0;
   color: var(--color-gray-700);
+  display: none;
 }
-.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .btn-position {
-  display: flex;
-  align-items: end;
+@media (min-width: 992px) {
+  .download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized .download-info .txt2 {
+    display: block;
+  }
 }
-.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .btn-position .dl-btn {
-  display: inline-flex;
-  width: 10rem;
-  height: 2.5rem;
-  align-items: end;
-  margin: 0 0 0 0;
+@media (min-width: 992px) {
+  .download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized .btn-position {
+    position: relative;
+  }
 }
-.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .btn-position .dl-btn img {
-  width: 100%;
+.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized .btn-position .dl-btn {
+  display: inline-block;
+}
+.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized .btn-position .dl-btn img {
   height: auto;
+  width: 120px;
+}
+@media (min-width: 992px) {
+  .download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized .btn-position .dl-btn img {
+    position: absolute;
+    bottom: 0px;
+    width: 180px;
+  }
+}
+.download .container .download-content .apple-and-googleplay .download-btn-and-reviews .centrumized .btn-position .dl-btn .small-fix {
+  left: 6px;
 }
 
 .integrate-tools {
